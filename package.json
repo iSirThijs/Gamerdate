@@ -1,0 +1,20 @@
+{
+  "name": "package",
+  "version": "1.0.0",
+  "description": "Package",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "leuk"
+  ],
+  "author": "Giovanni",
+  "license": "ISC",
+  "dependencies": {
+    "camelcase": "^5.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
