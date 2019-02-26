@@ -12,7 +12,10 @@
   "author": "Giovanni",
   "license": "ISC",
   "dependencies": {
-    "camelcase": "^5.0.0"
+    "camelcase": "^5.0.0",
+    "longest-streak": "^2.0.2",
+    "repeat-string": "^1.6.1",
+    "skin-tone": "^1.0.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.10"
