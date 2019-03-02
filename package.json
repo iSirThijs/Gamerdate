@@ -4,7 +4,8 @@
   "description": "Package",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "test": "test",
+    "start": "nodemon index.js"
   },
   "keywords": [
     "leuk"

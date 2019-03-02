@@ -1,3 +1,4 @@
+
 var camelcase = require('camelcase');
 
-console.log(camelcase('foo-bar');
+console.log(camelcase('foo-bar'));
