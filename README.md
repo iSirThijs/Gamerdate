@@ -23,7 +23,7 @@ npm install
   ```
    and hit enter
   
-## npm Packages included in this project
+## Included Packages
 - Nodemon
 - camelcase
 - longest-streak
