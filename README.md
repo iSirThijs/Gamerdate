@@ -6,7 +6,7 @@ This is a school project.
 1. Open up your terminal
 2. Copy and paste the following in your terminal.  
   ```
-  git clone https://...
+  git clone https://github.com/GiovanniDw/pt-course.git
   ```
    and press enter.  
   
