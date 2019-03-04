@@ -8,12 +8,14 @@ This is a school project.
   ```
   git clone https://...
   ```
-  and press `enter`
+  and press `enter`.  
+  
 3. To install the node modules used in this project copy and paste the following code inside the terminal.
 ```
 npm install
 ```
   press enter.
+  
   
   4. To get the application up and running.
   ```
