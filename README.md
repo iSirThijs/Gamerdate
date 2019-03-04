@@ -23,5 +23,9 @@ npm install
   ```
    and hit enter
   
-  ## npm Packages included in this project
-  
+## npm Packages included in this project
+- Nodemon
+- camelcase
+- longest-streak
+- repeat-string
+- skin-tone
