@@ -15,6 +15,7 @@
   "dependencies": {
     "camelcase": "^5.0.0",
     "express": "^4.16.4",
+    "express-generator": "^4.16.0",
     "lodash": "^4.17.11",
     "longest-streak": "^2.0.2",
     "repeat-string": "^1.6.1",
