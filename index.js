@@ -9,7 +9,8 @@ var longestStreak = require('longest-streak');
     console.log(longestStreak('` foo `` bar `', '`')) // => 2
 
 const skinTone = require('skin-tone');
-    
+
+var bodyParser = require('body-parser')
 
 //console.log(camelcase('foo-bar'));
 //console.log(_('foo-bar'));
@@ -20,19 +21,21 @@ const port = 3000
 
 var path = require('path');
 
-app.set("view engine", "pug");
-app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "view"));
 app.use('/static', express.static('static'))
 app.post('/', function (req, res) {
     res.send('Got a POST request')
 })
 app.get('/', function (req, res) {
-    res.render('index.pug')
+    res.render('index.ejs')
 })
 
 app.use("/static", express.static(path.join(__dirname, "public")));
 
-
+app.use(function (req, res, next) {
+    res.status(404).send('views/error')
+})
 
 
 app.get('*', (req, res) => {
@@ -40,7 +43,7 @@ app.get('*', (req, res) => {
         if (!err) { return res.send(html) }
         // Not super elegant the `indexOf` but useful
         if (err.message.indexOf('Failed to lookup view') !== -1) {
-            return res.render('root/error')
+            return res.render('views/error')
         }
         throw err
     })

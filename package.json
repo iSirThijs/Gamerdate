@@ -13,13 +13,14 @@
   "author": "Giovanni",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "camelcase": "^5.0.0",
+    "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-generator": "^4.16.0",
     "jshint": "^2.10.1",
     "lodash": "^4.17.11",
     "longest-streak": "^2.0.2",
-    "pug": "^2.0.3",
     "repeat-string": "^1.6.1",
     "skin-tone": "^1.0.0"
   },
