@@ -1,0 +1,115 @@
+@import url("https://necolas.github.io/normalize.css/latest/normalize.css");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300i,400,800i');
+
+*{
+    box-sizing: border-box;
+}
+body{
+    font-family: 'Open Sans', sans-serif;
+}
+
+header{
+    height: 3em;
+}
+
+h1{
+    text-align: center;
+    font-style: italic;
+    font-weight: 800;
+}
+
+form{
+    position: relative;
+}
+.login{
+border: 1px solid #ededed;
+border-radius: 5px;
+margin: 2em auto;
+width: 20em;
+
+display: flex;
+flex-direction: column;
+background: white;
+justify-content: space-between;
+}
+fieldset{
+    -webkit-appearance: none;
+}
+
+button{
+    -webkit-appearance: none;
+}
+.profile-info{
+    text-align: center;
+}
+ul.games{
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    align-items: stretch;
+}
+
+ul.games li{
+    width: 33.333%;
+    list-style: none;
+    margin-bottom: .2em;
+    
+}
+ul.games li.item div:first-of-type{
+    margin: 5px;
+    
+    border-radius: 8px;
+    
+    
+    
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    
+    overflow: hidden;
+    align-self: stretch;
+    
+}
+ul.games li.item{
+    position: relative;
+}
+ul.games li.item div:last-of-type {
+position: absolute;
+bottom: 0;
+right: 0;
+height: 25px;
+width: 25px;
+}
+img{
+    width: 100%;
+}
+ul.games li.item div button {
+-webkit-appearance: none;
+border-radius: 100%;
+border: 0px solid #3e3e3e;
+-webkit-box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.7);
+-moz-box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.7);
+box-shadow: 0px 0px 50px 0px rgba(0, 0, 0, 0.7);
+background: white;
+box-shadow:;
+color:red;
+height: 25px;
+width: 25px;
+text-align: center;
+padding-left: 0;
+padding-top: 0;
+padding-right: 0;
+padding-bottom: 0;
+}
+
+.profile-img{
+    height: 6em;
+    width: 6em;
+    background:lightgray;
+    border-radius: 100%;
+    margin: 0 auto;
+
+}
