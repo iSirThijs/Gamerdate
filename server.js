@@ -22,7 +22,7 @@ app.post('/', function (req, res) {
     res.send('Got a POST request')
 })
 app.get('/', function (req, res) {
-    res.render('index.ejs')
+    res.render('pages/index')
 })
 
 app.use(express.static(path.join(__dirname, "/static")))
