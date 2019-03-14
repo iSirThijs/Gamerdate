@@ -1,5 +1,7 @@
 # DateR
-This is a school project.  
+This is a school project.
+A small feature of a dating app will be made
+
 My [Research](https://github.com/GiovanniDw/pt-course/wiki)  
 
 ## Get started
