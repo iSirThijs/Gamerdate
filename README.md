@@ -24,8 +24,4 @@ npm install
   and hit enter.  
   
 ## Included Packages
-- Nodemon
-- camelcase
-- longest-streak
-- repeat-string
-- skin-tone
+See [package.json](https://github.com/GiovanniDw/pt-course/blob/master/package.json)
