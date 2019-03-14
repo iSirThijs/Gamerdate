@@ -8,20 +8,20 @@ This is a school project.
   ```
   git clone https://github.com/GiovanniDw/pt-course.git
   ```
-    hit enter.  
+   hit enter.  
   
 3. To install the node modules used in this project copy and paste the following code inside the terminal.
 ```
 npm install
 ```
-    hit enter again.
+   hit enter again.
   
   
   4. To get the application up and running.
   ```
   npm run start
   ```
-    and hit enter.  
+   and hit enter.  
   
 ## Included Packages
 See [package.json](https://github.com/GiovanniDw/pt-course/blob/master/package.json)
