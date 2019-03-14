@@ -2,13 +2,13 @@
   "name": "package",
   "version": "1.0.0",
   "description": "Package",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "test",
-    "start": "nodemon index.js"
+    "start": "nodemon server.js"
   },
   "keywords": [
-    "leuk"
+    "Dating"
   ],
   "author": "Giovanni",
   "license": "ISC",
