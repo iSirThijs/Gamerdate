@@ -2,7 +2,7 @@
 This is a school project.
 A small feature of a dating app will be made
 
-This is my [Research](https://github.com/GiovanniDw/pt-course/wiki)  
+[This](https://github.com/GiovanniDw/pt-course/wiki) is my research
 
 ## Get started
 
