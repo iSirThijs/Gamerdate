@@ -1,5 +1,6 @@
 # DateR
-This is a school project.
+This is a school project.  
+My [Research](https://github.com/GiovanniDw/pt-course/wiki)  
 
 ## Get started
 
