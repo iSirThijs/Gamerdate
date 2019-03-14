@@ -22,7 +22,7 @@ const port = 3000
 var path = require('path');
 
 app.set("view engine", "ejs");
-app.set("views", path.join(__dirname, "view"));
+app.set("views", path.join(__dirname, "views"));
 app.use('/static', express.static('static'))
 app.post('/', function (req, res) {
     res.send('Got a POST request')
@@ -31,23 +31,26 @@ app.get('/', function (req, res) {
     res.render('index.ejs')
 })
 
-app.use("/static", express.static(path.join(__dirname, "public")));
+app.use(express.static(path.join(__dirname, "/static")));
 
-app.use(function (req, res, next) {
-    res.status(404).send('views/error')
-})
 
+
+function notFound(req, res) {
+    res.status(404).render('error.ejs')
+}
 
 app.get('*', (req, res) => {
     res.render('static' + req.url, function (err, html) {
         if (!err) { return res.send(html) }
         // Not super elegant the `indexOf` but useful
         if (err.message.indexOf('Failed to lookup view') !== -1) {
-            return res.render('views/error')
+            return res.render('error.ejs')
         }
         throw err
     })
 })
+
+
 
 
 
