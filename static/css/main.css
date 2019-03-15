@@ -2,23 +2,88 @@
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons");
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:300i,400,800i');
 
+:root {
+    --main-color:#1E88E5;
+}
+
+
+
+
 *{
     box-sizing: border-box;
 }
 body{
     font-family: 'Open Sans', sans-serif;
+    width: 100vw;
+    height: 100vh;
 }
 
 header{
     height: 3em;
 }
+section.empty-state{
+  margin-top: 10em;
+    
+}
+section.empty-state p{
+text-align: center;
 
+}
+ul.main-nav{
+    height: 3em;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1em 0 1em;
+
+}
+ul.main-nav li{
+    list-style: none;
+   width: 3em;
+}
+ul.main-nav li:first-child {
+    transform: scale(0.6);
+}
+ul.main-nav li:last-child {
+    transform: scale(0.6);
+}
+
+ul.main-nav li a{
+   width: 3em;
+
+}
+ul.main-nav li a img{
+    height: auto;
+    
+    
+    
+}
+ul.main-nav li {
+    
+   opacity: 0.2;
+
+
+
+}
+ul.main-nav li.current  {
+
+    opacity: 1;
+
+
+
+}
 h1{
+    font-size: 2em;
     text-align: center;
     font-style: italic;
     font-weight: 800;
+    color: var(--main-color);
 }
-
+h2 {
+    text-align: center;
+    font-style: italic;
+    font-weight: 800;
+    color: var(--main-color);
+}
 form{
     position: relative;
 }
@@ -85,6 +150,7 @@ width: 25px;
 }
 img{
     width: 100%;
+    
 }
 ul.games li.item div button {
 -webkit-appearance: none;

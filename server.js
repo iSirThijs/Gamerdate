@@ -27,7 +27,9 @@ app.get('/', function (req, res) {
 app.get('/profile', function (req, res) {
     res.render('pages/profile')
 })
-
+app.get('/chat', function (req, res) {
+    res.render('pages/chat')
+})
 app.use(express.static(path.join(__dirname, "/static")))
 
 
