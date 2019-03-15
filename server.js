@@ -24,8 +24,8 @@ app.post('/', function (req, res) {
 app.get('/', function (req, res) {
     res.render('pages/index')
 })
-app.get('/', function (req, res) {
-    res.render('/pages/profile')
+app.get('/profile', function (req, res) {
+    res.render('pages/profile')
 })
 
 
