@@ -28,7 +28,6 @@ app.get('/profile', function (req, res) {
     res.render('pages/profile')
 })
 
-
 app.use(express.static(path.join(__dirname, "/static")))
 
 
