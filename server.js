@@ -24,13 +24,17 @@ app.post('/', function (req, res) {
 app.get('/', function (req, res) {
     res.render('pages/index')
 })
+app.get('/', function (req, res) {
+    res.render('/pages/profile')
+})
+
 
 app.use(express.static(path.join(__dirname, "/static")))
 
 
 
 function notFound(req, res) {
-    res.status(404).render('error.ejs')
+    res.status(404).render('./pages/error.ejs')
 }
 
 app.get('*', (req, res) => {
@@ -40,11 +44,12 @@ app.get('*', (req, res) => {
         }
         // Not super elegant the `indexOf` but useful
         if (err.message.indexOf('Failed to lookup view') !== -1) {
-            return res.render('error.ejs')
+            return res.render('./pages/error.ejs')
         }
         throw err
     })
 })
+
 
 
 
