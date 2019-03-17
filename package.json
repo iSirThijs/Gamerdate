@@ -6,7 +6,6 @@
   "scripts": {
     "test": "test",
     "start": "nodemon server.js"
-    
   },
   "keywords": [
     "Dating"
@@ -14,7 +13,7 @@
   "author": "Giovanni",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.18.3",
+    "array-find": "^1.0.0",
     "browser-sync": "^2.26.3",
     "camelcase": "^5.0.0",
     "ejs": "^2.6.1",
@@ -30,4 +29,3 @@
     "nodemon": "^1.18.10"
   }
 }
-

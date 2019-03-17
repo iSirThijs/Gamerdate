@@ -1,0 +1,19 @@
+<% include ../partials/head.ejs %>
+
+<ul class="games">
+    <% for (var index = 0; index < data.length; index++) { %>
+    <li class="item">
+    <div>
+        <img src=" <%- data[index].cover %>" alt="<%= data[index].title %>">
+    </div>
+    <div>
+        <div><button type="button" class="add material-icons">close</button></div>
+    </div>
+    </li>
+<% } %>
+
+</ul>    
+
+
+<% include ../partials/tail.ejs %>
+

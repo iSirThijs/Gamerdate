@@ -4,10 +4,10 @@
 
 <div>
 <ul class="games">
-    <% for (var index = 0; index < gameData.length; index++) { %>
+    <% for (var index = 0; index < data.length; index++) { %>
     <li class="item">
     <div>
-        <img src="<%= gameData[index].cover %>" alt="<%= gameData[index].title %>">
+        <img src="<%= data[index].cover %>" alt="<%= data[index].title %>">
     </div>
     <div>
         <div><button type="button" class="add material-icons">close</button></div>
@@ -15,16 +15,5 @@
     </li>
 <% } %>
 
-
-
-
-
-
-
 </ul>    
 </div>
-
-<p>
-    <a href=/add>Add a movie</a> </p> 
-    
-    
