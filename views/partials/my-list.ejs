@@ -1,19 +1,28 @@
 
 
-<h2>Games you like</h2>
+<h2>The games that I play</h2>
 
 <div>
 <ul class="games">
     <% for (var index = 0; index < data.length; index++) { %>
-    <li class="item">
+    <li class="item"><a href="/<%= data[index].id %>">
+    <!--<p class="game-title"><%= data[index].title%></p>-->
     <div>
         <img src="<%= data[index].cover %>" alt="<%= data[index].title %>">
     </div>
     <div>
-        <div><button type="button" class="add material-icons">close</button></div>
+        <div><button id=js-remove
+                data-id="<%= data.id %>"
+
+ type="button" class="add material-icons">close</button></div>
     </div>
+    </a>
     </li>
 <% } %>
+<li class="item">
 
+          <div><img src="https://via.placeholder.com/100x125" alt=""></div>
+          <div><a href="/add"class="add material-icons">add</a></div>
+        </li>
 </ul>    
 </div>
