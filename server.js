@@ -35,20 +35,9 @@ var data = [
 ]
 
 
-
-
-
-
-
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))
 app.use('/static', express.static('static'))
-// app.use(bodyParser.urlencoded({
-//     extended: true
-// }))
-
-
-
 
 app.post('/', function (req, res) {
     res.send('Got a POST request')
@@ -59,43 +48,36 @@ app.get('/', function (req, res) {
 app.get('/profile', function (req, res) {
     res.render('pages/profile')
 })
+app.get('/chat', function (req, res, next) {
+    res.render('pages/chat')
+})
 
-// app.get('/games', function (req, res) {
-//     res.render('pages/games')
-// })
 app.get('/games', games)
 app.get('/:id', game)
 
 
-app.get('/chat', function (req, res) {
-    res.render('pages/chat')
-})
 
 // function (req, res) {
 //     res.render('my-list.ejs', {data: data})
 // }
 
 function games(req, res) {
-
     var doc = '<!doctype html>'
     var length = data.length
     var index = -1
     var game
 
-
     doc += '<title>All games</title>'
     doc += '<h1>Games</h1>'
 
-    while (++index < length) {
-        game = data[index]
-        doc += '<h2><a href="/' + game.id + '">' + game.title + '</a></h2>'
-        doc += '<p>' + game.cover + '</p>'
-    }
-
-
-    res.render('pages/games.ejs', {data: data})
-
-    
+        while (++index < length) {
+            game = data[index]
+            doc += '<h2><a href="/' + game.id + '">' + game.title + '</a></h2>'
+            doc += '<p>' + game.cover + '</p>'
+        }
+        res.render('pages/games.ejs', {
+            data: data
+        })
 }
 
 function game(req, res, next) {
@@ -108,17 +90,12 @@ function game(req, res, next) {
     doc += '<h1>' + game.title + '</h1>'
     doc += '<p>' + game.description + '</p>'
 
-    res.render('pages/game.ejs', {data: game})
-
-
-
+    res.render('pages/game.ejs', {
+        data: game
+    })
 }
 
-
-
 app.use(express.static(path.join(__dirname, "/static")))
-
-
 
 
 function notFound(req, res) {
@@ -137,12 +114,5 @@ app.get('*', (req, res) => {
         throw err
     })
 })
-
-
-
-
-
-
-
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
