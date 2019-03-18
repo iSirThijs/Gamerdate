@@ -25,9 +25,11 @@ request('http://www.google.com', function (error, response, body) {
 });
 
 
+
 const express = require('express')
 const app = express()
 const port = 3000
+
 
 var data = [
     {
@@ -44,6 +46,7 @@ var data = [
     }
 ]
 
+
 var upload = multer({
     dest: 'static/uploads/'
 })
@@ -55,6 +58,7 @@ app.use(bodyParser.urlencoded({extended:true}))
 // app.post('/', function (req, res) {
 //     res.send('Got a POST request')
 // })
+app.post('/profile', upload.single('cover'), add)
 app.delete('/profile:id', remove)
 app.get('/', function (req, res) {
     res.render('pages/index')
@@ -68,7 +72,7 @@ app.get('/chat', function (req, res, next) {
 
 // app.get('/add', form)
 // app.get('/:id', game)
-app.post('/profile', upload.single('cover'), add)
+
 
 
 
@@ -83,6 +87,7 @@ function profile(req, res) {
             data: data
         })
 }
+
 
 
 
