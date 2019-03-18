@@ -5,24 +5,24 @@
 <div>
 <ul class="games">
     <% for (var index = 0; index < data.length; index++) { %>
-    <li class="item"><a href="/<%= data[index].id %>">
+    <li class="item">
     <!--<p class="game-title"><%= data[index].title%></p>-->
-    <div>
+    
         <img src="<%= data[index].cover %>" alt="<%= data[index].title %>">
-    </div>
-    <div>
-        <div><button id=js-remove
-                data-id="<%= data.id %>"
+    
+    
+        <button id=js-remove
+                data-id="<%= data[index].id %>"
 
- type="button" class="add material-icons">close</button></div>
-    </div>
-    </a>
+ class="add material-icons">close</button>
+    
+    
     </li>
 <% } %>
 <li class="item">
 
-          <div><img src="https://via.placeholder.com/100x125" alt=""></div>
-          <div><a href="/add"class="add material-icons">add</a></div>
+          <img src="https://via.placeholder.com/100x125" alt="">
+          <button id="show-add"class="add material-icons">add</button>
         </li>
 </ul>    
 </div>

@@ -6,8 +6,8 @@ var skinTone = require('skin-tone');
 var bodyParser = require('body-parser')
 var path = require('path');
 var find = require('array-find');
-// var slug = require('slug')
-// var bodyParser = require('body-parser')
+var slug = require('slug')
+var bodyParser = require('body-parser')
 
 //console.log(camelcase('foo-bar'));
 //console.log(_('foo-bar'));
@@ -40,10 +40,11 @@ var data = [
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))
 app.use('/static', express.static('static'))
-
-app.post('/', function (req, res) {
-    res.send('Got a POST request')
-})
+app.use(bodyParser.urlencoded({extended:true}))
+// app.post('/', function (req, res) {
+//     res.send('Got a POST request')
+// })
+app.delete('/profile:id', remove)
 app.get('/', function (req, res) {
     res.render('pages/index')
 })
@@ -52,9 +53,11 @@ app.get('/chat', function (req, res, next) {
     res.render('pages/chat')
 })
 
-app.get('/games', games)
-app.get('/add', form)
-app.get('/:id', game)
+// app.get('/games', games)
+app.post('/profile', add)
+// app.get('/add', form)
+// app.get('/:id', game)
+
 
 
 
@@ -72,46 +75,72 @@ function profile(req, res) {
 
 
 
-function games(req, res) {
-    var doc = '<!doctype html>'
-    var length = data.length
-    var index = -1
-    var game
+// function games(req, res) {
+//     var doc = '<!doctype html>'
+//     var length = data.length
+//     var index = -1
+//     var game
 
-    doc += '<title>All games</title>'
-    doc += '<h1>Games</h1>'
+//     doc += '<title>All games</title>'
+//     doc += '<h1>Games</h1>'
 
-        while (++index < length) {
-            game = data[index]
-            doc += '<h2><a href="/' + game.id + '">' + game.title + '</a></h2>'
-            doc += '<p>' + game.cover + '</p>'
-        }
-        res.render('pages/games', {
-            data: data
-        })
+//         while (++index < length) {
+//             game = data[index]
+//             doc += '<h2><a href="/' + game.id + '">' + game.title + '</a></h2>'
+//             doc += '<p>' + game.cover + '</p>'
+//         }
+//         res.render('pages/games', {
+//             data: data
+//         })
+// }
+
+// function form(req,res){
+
+//     res.render('pages/add')
+// }
+function add (req,res) {
+    var id = slug(req.body.title).toLowerCase()
+
+
+    data.push({
+        id: id,
+        title: req.body.title,
+        cover: req.body.cover,
+        description: req.body.description
+    })
+    res.redirect('/profile')
 }
 
-function form(req,res){
-
-    res.render('pages/add')
-}
-
-
-function game(req, res, next) {
+function remove(req, res) {
     var id = req.params.id
-    var doc = '<!doctype html>'
-    var game = find(data, function (value) {
-        return value.id === id
-    })
-    doc += '<title>' + game.title + ' - My game website</title>'
-    doc += '<h1>' + game.title + '</h1>'
-    doc += '<img src="' + game.cover + '">' 
 
-    res.send(doc)
-    res.render('pages/game', {
-        data: game
+    data = data.filter(function (value) {
+        return value.id !== id
     })
+
+    res.json({
+        status: 'ok'
+    })
+    res.redirect('/profile')
 }
+
+
+// function game(req, res, next) {
+//     var id = req.params.id
+//     var doc = '<!doctype html>'
+//     var game = find(data, function (value) {
+//         return value.id === id
+//     })
+//     doc += '<title>' + game.title + ' - My game website</title>'
+//     doc += '<h1>' + game.title + '</h1>'
+//     doc += '<img src="' + game.cover + '">' 
+
+//     res.send(doc)
+//     res.render('pages/game', {
+//         data: game
+//     })
+// }
+
 
 app.use(express.static(path.join(__dirname, "/static")))
 

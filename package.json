@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "array-find": "^1.0.0",
+    "body-parser": "^1.18.3",
     "browser-sync": "^2.26.3",
     "camelcase": "^5.0.0",
     "ejs": "^2.6.1",
@@ -23,7 +24,8 @@
     "lodash": "^4.17.11",
     "longest-streak": "^2.0.2",
     "repeat-string": "^1.6.1",
-    "skin-tone": "^1.0.0"
+    "skin-tone": "^1.0.0",
+    "slug": "^1.0.0"
   },
   "devDependencies": {
     "nodemon": "^1.18.10"
