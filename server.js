@@ -8,13 +8,21 @@ var path = require('path');
 var find = require('array-find');
 var slug = require('slug')
 var bodyParser = require('body-parser')
-
+var request = require('request')
+var multer = require('multer')
 //console.log(camelcase('foo-bar'));
 //console.log(_('foo-bar'));
 //console.log(repeat('B', 5));
 //console.log(longestStreak('` foo `` bar `', '`')) // => 2
 
 
+request('http://www.google.com', function (error, response, body) {
+
+    console.log('error:', error);
+    console.log('statusCode:', response);
+    console.log('body:', body);
+
+});
 
 
 const express = require('express')
@@ -36,6 +44,9 @@ var data = [
     }
 ]
 
+var upload = multer({
+    dest: 'static/uploads/'
+})
 
 app.set("view engine", "ejs")
 app.set("views", path.join(__dirname, "views"))
@@ -54,10 +65,10 @@ app.get('/chat', function (req, res, next) {
 })
 
 // app.get('/games', games)
-app.post('/profile', add)
+
 // app.get('/add', form)
 // app.get('/:id', game)
-
+app.post('/profile', upload.single('cover'), add)
 
 
 
@@ -105,7 +116,7 @@ function add (req,res) {
     data.push({
         id: id,
         title: req.body.title,
-        cover: req.body.cover,
+        cover: req.file ? req.file.filename : null,
         description: req.body.description
     })
     res.redirect('/profile')
@@ -163,3 +174,5 @@ app.get('*', (req, res) => {
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+
+

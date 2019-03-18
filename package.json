@@ -23,7 +23,9 @@
     "jshint": "^2.10.1",
     "lodash": "^4.17.11",
     "longest-streak": "^2.0.2",
+    "multer": "^1.4.1",
     "repeat-string": "^1.6.1",
+    "request": "^2.88.0",
     "skin-tone": "^1.0.0",
     "slug": "^1.0.0"
   },

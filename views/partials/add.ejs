@@ -1,18 +1,18 @@
 
 
-<form class=hidden action=/profile method=post>
+<form class=hidden action=/profile method=post enctype=multipart/form-data>
 <fieldset class=add-movie>
   
 <h2>Add your movie details</h2>
   <label>Title </label>
   <input name=title>
   <label>
-    Enter URL of cover
+   Cover
     
   </label>
-  <input name=cover>
+  <input name=cover type=file accept=image/*>
   <label>
-    Experiance
+    Experience
     
   </label>
   <textarea
