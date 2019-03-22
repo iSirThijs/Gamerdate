@@ -8,7 +8,7 @@ var form = document.querySelector('form');
 var showFormButton = document.querySelector('#show-add');
 
 showFormButton.addEventListener('click', function(){
-    form.classList.remove('hidden')
+    form.classList.toggle('hidden')
 })
 
 

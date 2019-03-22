@@ -6,14 +6,14 @@ var skinTone = require('skin-tone');
 var bodyParser = require('body-parser')
 var path = require('path');
 var find = require('array-find');
-var slug = require('slug')
-var bodyParser = require('body-parser')
-var request = require('request')
-var multer = require('multer')
+var slug = require('slug');
+var request = require('request');
+var multer = require('multer');
 //console.log(camelcase('foo-bar'));
 //console.log(_('foo-bar'));
 //console.log(repeat('B', 5));
 //console.log(longestStreak('` foo `` bar `', '`')) // => 2
+
 
 
 request('http://www.google.com', function (error, response, body) {

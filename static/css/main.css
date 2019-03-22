@@ -120,9 +120,10 @@ justify-content: space-between;
 .add-movie {
     border: 1px solid #ededed;
     border-radius: 5px;
-    margin: 2em auto;
-    width: 20em;
+ /* margin: 2em auto; */
+    
 
+ 
     display: flex;
     flex-direction: column;
     background: white;
@@ -144,7 +145,7 @@ input, textarea{
     border-top: 0px;
     border-right: 0px;
     border-bottom: 1px solid lightgray;
-    border-left: 1px solid lightgray;
+    
     /* border-radius: 5px; */
     padding: .5em;
     margin: .5em 0 .5em 0;
@@ -165,24 +166,17 @@ ul.games li.item{
     list-style: none;
     margin-bottom: .2em;
     position: relative;
-    
 }
 ul.games li.item img{
     padding: .5em;
-    
-    border-radius: 23px;
-    
-    
-    
+    border-radius: 15px;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     width: 100%;
-    
     overflow: hidden;
     align-self: stretch;
-    
 }
 ul.games li.item{
     position: relative;
