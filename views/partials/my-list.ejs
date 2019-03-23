@@ -3,26 +3,19 @@
 <h2>The games that I play</h2>
 
 <div>
-<ul class="games">
-    <% for (var index = 0; index < data.length; index++) { %>
-    <li class="item">
-    <!--<p class="game-title"><%= data[index].title%></p>-->
-    
-        <img src="<%= data[index].cover %>" alt="<%= data[index].title %>">
-    
-    
-        <button id=js-remove
-                data-id="<%= data[index].id %>"
-
- class="add material-icons">close</button>
-    
-    
-    </li>
-<% } %>
-<li class="item">
-
-          <img src="https://via.placeholder.com/100x125" alt="">
-          <button id="show-add"class="add material-icons">add</button>
+    <ul class="games">
+        <% for (var index = 0; index < data.length; index++) { %>
+        <li class="item">
+            <img src="<%= data[index].cover %>" alt="<%= data[index].title %>">
+            <button id=js-remove
+                    data-id="<%= data[index].id %>"
+                    class="add material-icons">close</button>
         </li>
-</ul>    
+        <% } %>
+        <li class="item">
+
+            <img src="https://via.placeholder.com/100x125" alt="">
+            <button id="show-add"class="add material-icons">add</button>
+        </li>
+    </ul>    
 </div>

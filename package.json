@@ -27,9 +27,12 @@
     "repeat-string": "^1.6.1",
     "request": "^2.88.0",
     "skin-tone": "^1.0.0",
-    "slug": "^1.0.0"
+    "slug": "^1.0.0",
+    "stylelint": "^9.10.1"
   },
   "devDependencies": {
-    "nodemon": "^1.18.10"
+    "eslint": "^5.15.3",
+    "nodemon": "^1.18.10",
+    "stylelint-config-recommended": "^2.1.0"
   }
 }

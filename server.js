@@ -5,6 +5,13 @@ var bodyParser = require('body-parser')
 var request = require('request')
 var multer = require('multer')
 
+var find = require('array-find');
+
+//console.log(camelcase('foo-bar'));
+//console.log(_('foo-bar'));
+//console.log(repeat('B', 5));
+//console.log(longestStreak('` foo `` bar `', '`')) // => 2
+
 request('http://www.google.com', function (error, response, body) {
 
     console.log('error:', error);
@@ -13,9 +20,11 @@ request('http://www.google.com', function (error, response, body) {
 
 });
 
+
 const express = require('express')
 const app = express()
 const port = 3000
+
 
 var data = [
     {
@@ -32,6 +41,7 @@ var data = [
     }
 ]
 
+
 var upload = multer({
     dest: 'static/uploads/'
 })
@@ -43,6 +53,7 @@ app.use(bodyParser.urlencoded({extended:true}))
 // app.post('/', function (req, res) {
 //     res.send('Got a POST request')
 // })
+app.post('/profile', upload.single('cover'), add)
 app.delete('/profile:id', remove)
 app.get('/', function (req, res) {
     res.render('pages/index')
@@ -56,7 +67,7 @@ app.get('/chat', function (req, res, next) {
 
 // app.get('/add', form)
 // app.get('/:id', game)
-app.post('/profile', upload.single('cover'), add)
+
 
 // function (req, res) {
 //     res.render('my-list.ejs', {data: data})
@@ -138,6 +149,7 @@ app.use(express.static(path.join(__dirname, '/static')))
 function notFound(req, res) {
     res.status(404).render('./pages/error.ejs')
 }
+
 
 app.get('*', (req, res) => {
     res.render('static' + req.url, function (err, html) {
