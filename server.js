@@ -26,6 +26,7 @@ request('http://www.google.com', function (error, response, body) {
 
 
 
+
 const express = require('express')
 const app = express()
 const port = 3000
@@ -164,6 +165,7 @@ app.use(express.static(path.join(__dirname, "/static")))
 function notFound(req, res) {
     res.status(404).render('./pages/error.ejs')
 }
+
 
 app.get('*', (req, res) => {
     res.render('static' + req.url, function (err, html) {
