@@ -1,20 +1,16 @@
-var camelcase = require('camelcase');
-var _ = require('lodash');
-var repeat = require('repeat-string');
-var longestStreak = require('longest-streak');
-var skinTone = require('skin-tone');
 var bodyParser = require('body-parser')
 var path = require('path');
+var slug = require('slug')
+var bodyParser = require('body-parser')
+var request = require('request')
+var multer = require('multer')
+
 var find = require('array-find');
-var slug = require('slug');
-var request = require('request');
-var multer = require('multer');
+
 //console.log(camelcase('foo-bar'));
 //console.log(_('foo-bar'));
 //console.log(repeat('B', 5));
 //console.log(longestStreak('` foo `` bar `', '`')) // => 2
-
-
 
 request('http://www.google.com', function (error, response, body) {
 
@@ -23,8 +19,6 @@ request('http://www.google.com', function (error, response, body) {
     console.log('body:', body);
 
 });
-
-
 
 
 const express = require('express')
@@ -75,22 +69,15 @@ app.get('/chat', function (req, res, next) {
 // app.get('/:id', game)
 
 
-
-
 // function (req, res) {
 //     res.render('my-list.ejs', {data: data})
 // }
 
 function profile(req, res) {
-        
-
-        res.render('pages/profile', {
-            data: data
-        })
+    res.render('pages/profile', {
+        data: data
+    })
 }
-
-
-
 
 // function games(req, res) {
 //     var doc = '<!doctype html>'
@@ -118,7 +105,6 @@ function profile(req, res) {
 function add (req,res) {
     var id = slug(req.body.title).toLowerCase()
 
-
     data.push({
         id: id,
         title: req.body.title,
@@ -141,7 +127,6 @@ function remove(req, res) {
     res.redirect('/profile')
 }
 
-
 // function game(req, res, next) {
 //     var id = req.params.id
 //     var doc = '<!doctype html>'
@@ -159,8 +144,7 @@ function remove(req, res) {
 // }
 
 
-app.use(express.static(path.join(__dirname, "/static")))
-
+app.use(express.static(path.join(__dirname, '/static')))
 
 function notFound(req, res) {
     res.status(404).render('./pages/error.ejs')
