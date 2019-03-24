@@ -6,9 +6,10 @@
     <ul class="games">
         <% for (var index = 0; index < data.length; index++) { %>
         <li class="item">
-            <img src="<%= data[index].cover %>" alt="<%= data[index].title %>">
+        
+            <img src="/uploads/<%= data[index].cover %>" alt="<%= data[index].title %>">
             <button id=js-remove
-                    data-id="<%= data[index].id %>"
+                    data-id="<%= data[index]._id %>"
                     class="add material-icons">close</button>
         </li>
         <% } %>

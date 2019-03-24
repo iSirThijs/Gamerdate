@@ -37,6 +37,7 @@ function onremove(ev) {
             throw new Error('Could not delete!')
         }
 
+        
 
         window.location = '/profile'
     }
@@ -50,9 +51,7 @@ function onremove(ev) {
       return res.json()
   }
 
-  function onload() {
-      window.location = '/profile'
-  }
+ 
 
   function onfail() {
       throw new Error('Could not delete!')
