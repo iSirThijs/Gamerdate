@@ -8,14 +8,7 @@
        <p>ps4 gamer</p>
     </div>
 
-<%  if (user) {%>
-  <h2>Hi, <%= user.username %> !</h2>
-<% } else { %>
-<a href="/log-in">Log in</a>
-or
-<a href="/sign-up">Sign up</a>
-<% } %>
-    
+
 <% include ../partials/my-list.ejs %>
 <% include ../partials/add.ejs %>
 
