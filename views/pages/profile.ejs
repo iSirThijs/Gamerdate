@@ -4,10 +4,25 @@
       <div class="profile-img">
         <img src="" alt="">
       </div>
-      <h2>Giovanni</h2>
-      <p>ps4 gamer</p>
+       <h2>Giovanni</h2>
+       <p>ps4 gamer</p>
     </div>
+
+<%  if (user) {%>
+  <h2>Hi, <%= user.username %> !</h2>
+<% } else { %>
+<a href="/log-in">Log in</a>
+or
+<a href="/sign-up">Sign up</a>
+<% } %>
+    
 <% include ../partials/my-list.ejs %>
 <% include ../partials/add.ejs %>
+
+
+
+
+
+
 <% include ../partials/tail.ejs %>
 

@@ -34,25 +34,29 @@ request('http://www.google.com', function (error, response, body) {
 });
 
 
+
+
+
 const express = require('express')
 const app = express()
 const port = 3000
 
 
-var data = [
-    {
-        id: 'red-dead-redemption-2',
-        title: 'Red Dead Redemption 2',
-        cover: 'Red_Dead_Redemption_II.jpg',
-        description: 'Beste spel ever! echt leuk!'
-    },
-    {
-        id: 'gta-v',
-        title: 'Grand Theft Auto 5',
-        cover: 'gta.jpg',
-        description: 'Gta online blijft leuk !'
-    }
-]
+
+// var data = [
+//     {
+//         id: 'red-dead-redemption-2',
+//         title: 'Red Dead Redemption 2',
+//         cover: 'Red_Dead_Redemption_II.jpg',
+//         description: 'Beste spel ever! echt leuk!'
+//     },
+//     {
+//         id: 'gta-v',
+//         title: 'Grand Theft Auto 5',
+//         cover: 'gta.jpg',
+//         description: 'Gta online blijft leuk !'
+//     }
+// ]
 
 
 var upload = multer({
@@ -66,20 +70,27 @@ app.use(bodyParser.urlencoded({extended:true}))
 // app.post('/', function (req, res) {
 //     res.send('Got a POST request')
 // })
+app.get('/chat', function (req, res) {
+    res.render('pages/chat')
+})
+app.get('/sign-up', signup)
+
+app.get('/log-in', login)
+//app.post('/log-in', add)
 app.post('/profile', upload.single('cover'), add)
 app.delete('/profile:id', remove)
 app.get('/', function (req, res) {
     res.render('pages/index')
 })
 app.get('/profile', profile) 
-app.get('/chat', function (req, res, next) {
-    res.render('pages/chat')
-})
+
 app.use(session({
     resave: false,
     saveUninitialized: true,
     secret: process.env.SESSION_SECRET
 }))
+
+
 
 // app.get('/games', games)
 
@@ -91,21 +102,21 @@ app.use(session({
 //     res.render('my-list.ejs', {data: data})
 // }
 
-function profile(req, res) {
-db.collection('game').find().toArray(done)
+function profile(req, res, next) {
+    db.collection('game').find().toArray(done)
 
-function done(err, data){
-    if (err) {
-        next(err)
-    }else {
- res.render('pages/profile', {
-     data: data
- })
+    function done(err, data){
+        if (err) {
+            next(err)
+        } else {
+        res.render('pages/profile.ejs', {
+            data: data,
+            user: req.session.user
+        })
+        }
     }
 }
 
-   
-}
 
 
 
@@ -132,19 +143,25 @@ function done(err, data){
 // }
 
 
+
 // function form(req,res){
 
 
 //     res.render('pages/add')
 // }
-function add (req,res) {
-    var id = slug(req.body.title).toLowerCase()
-    data.push({
-        id: id,
-        title: req.body.title,
-        cover: req.file ? req.file.filename : null,
-        description: req.body.description
-    })
+function add (req,res, next) {
+   var id = slug(req.body.title).toLowerCase()
+
+    if (!req.session.user) {
+        res.status(401).send('Credentials required')
+        return
+    }
+    // data.push({
+    //     id: id,
+    //     title: req.body.title,
+    //     cover: req.file ? req.file.filename : null,
+    //     description: req.body.description
+    // })
     db.collection('game').insertOne({
         title: req.body.title,
         cover: req.file ? req.file.filename : null,
@@ -153,19 +170,27 @@ function add (req,res) {
 function done (err, data){
     if (err){
         next(err)
-    }else {
+    } else {
         res.redirect('/profile')
     }
 }
 
-    
+
 }
 
-function remove(req, res) {
+function remove(req, res, next) {
     var id = req.params.id
+
+if (!req.session.user) {
+    res.status(401).send('Credentials required')
+    return
+}
+
     db.collection('game').deleteOne({
         _id: mongo.ObjectID(id)
     }, done)
+    
+
 
 function done (err) {
     if(err) {
@@ -205,23 +230,26 @@ function signup(req, res, next) {
                 next(err)
             } else {
                 req.session.user = {username:username}
-                res.redirect('/profile')
+                res.redirect('/')
             }
         }
     }
+    res.render('pages/sign-up')
 }
 function login(req, res, next){
     function done(err, data){
         function onverify(match) {
             if (match) {
                 req.session.user = {username: user.username}
-                res.redirect('/profile')
+                res.redirect('/')
             } else {
                 res.status(401).send('Password incorrect')
+                next(err)
             }
         }
     }
 }
+
 
 app.use(express.static(path.join(__dirname, '/static')))
 
