@@ -1,18 +1,34 @@
 <% include ../partials/head.ejs %>
+
+       
+      <% if (typeof user == 'object' && user) { %>
+
 <h1>Profile</h1>
 <div class="profile-info">
       <div class="profile-img">
-        <img src="" alt="">
+        <img src="<%= user.avatar %>" alt="">
       </div>
-       <h2>Giovanni</h2>
-       <p>ps4 gamer</p>
+
+  <h2>Hi,  <%= user.username %> !</h2>
+  <p> <%= user.console> gamer%> </p>
+<% } else { %>
+
+<div class=log-sign>
+Already have an account?
+<a class=btn-login href="/log-in">Log in</a>
+New here?
+<a class=btn-signup href="/sign-up">Sign up</a>
+<% } %>
+</div>
+       
     </div>
 
+ <% if (typeof user == 'object' && user) { %>
 
 <% include ../partials/my-list.ejs %>
 <% include ../partials/add.ejs %>
 
-
+<% } %>
 
 
 

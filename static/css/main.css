@@ -249,3 +249,24 @@ ul.games li.item button.add:hover {
 
 } 
 
+.log-sign{
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    text-align: center;
+    align-content: flex-end;
+    margin-top: 30%;
+}
+
+.btn-signup, .btn-login {
+    background: var(--main-color);
+    border-radius: 5px;
+    color: white;
+    font-weight: 400;
+    padding: .7em 0;
+    margin: .5em 0 .5em 0;
+    border: 0;
+    text-decoration: none;
+    text-align: center;
+    
+}
