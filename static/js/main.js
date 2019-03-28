@@ -38,6 +38,8 @@ function onremove(ev) {
         }
 
         
+        
+
 
         window.location = '/profile'
     }
@@ -50,6 +52,7 @@ function onremove(ev) {
   function onresponse(res) {
       return res.json()
   }
+
 
  
 

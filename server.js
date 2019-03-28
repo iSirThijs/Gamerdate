@@ -1,6 +1,6 @@
 var path = require('path');
 var bodyParser = require('body-parser')
-var request = require('request')
+// var request = require('request')
 var multer = require('multer')
 var mongo = require('mongodb')
 var session = require('express-session')
@@ -17,22 +17,12 @@ mongo.MongoClient.connect(url, function (err, client) {
 
 
 
-request('http://www.google.com', function (error, response, body) {
-
-    console.log('error:', error);
-    console.log('statusCode:', response);
-    console.log('body:', body);
-
-});
-
-
 
 
 
 const express = require('express')
 const app = express()
 const port = 3000
-
 
 
 
@@ -51,11 +41,11 @@ app.use(bodyParser.urlencoded({
 
 app.get('/chat', chat)
 app.get('/', renderHome)
-app.get('/profile', profile)
+
 app.get('/sign-up', renderSignup)
 app.get('/login', renderLogin)
-
-// app.post('/sign-up', signup)
+app.get('/profile', profile)
+app.post('/sign-up', signup)
 app.post('/login', login)
 app.post('/profile', upload.single('cover'), addGame)
 
@@ -65,6 +55,7 @@ app.use(function (req, res, next) {
     res.locals.user = null
     next()
 })
+
 
 app.use(session({
     resave: false,
@@ -90,6 +81,7 @@ function renderSignup(req, res) {
 
 
 function profile(req, res, next) {
+
     db.collection('game').find().toArray(done)
 
     function done(err, data) {
@@ -97,8 +89,8 @@ function profile(req, res, next) {
             next(err)
         } else {
             res.render('pages/profile', {
-                data: data[0],
-                user: req.session.user
+                data: data
+              
               
 
             })
@@ -111,15 +103,16 @@ function profile(req, res, next) {
 
 
 
+
 function addGame(req, res, next) {
+// var id = slug(req.body.title).toLowerCase()
 
-
-    if (!req.session.user) {
-        res.status(401).send('Credentials required')
-        return
-    } else {
-        res.redirect('/sign-up')
-    }
+    // if (!req.session.user) {
+    //     res.status(401).send('Credentials required')
+    //     return
+    // } else {
+    //     res.redirect('/sign-up')
+    // }
 
 
 
@@ -131,22 +124,22 @@ function addGame(req, res, next) {
 
     function done(err) {
         if (err) {
-            next(err)
+           next(err)
         } else {
-            res.redirect('/profile')
+ res.redirect('/profile')
         }
     }
-
+ 
 
 }
 
 function removeGame(req, res, next) {
     var id = req.params.id
 
-    if (!req.session.user) {
-        res.status(401).send('Credentials required')
-        return
-    }
+    // if (!req.session.user) {
+    //     res.status(401).send('Credentials required')
+    //     return
+    // }
 
     db.collection('game').deleteOne({
         _id: mongo.ObjectID(id)
@@ -158,44 +151,44 @@ function removeGame(req, res, next) {
         if (err) {
             next(err)
         } else {
-            res.json({
-                status: 'ok'
-            })
+           res.json({status: 'ok'})
+           res.redirect('/profile')
         }
     }
-    // data = data.filter(function (value) {
-    //     return value.id !== id
-    // })
-
-    res.redirect('/profile')
+   
 }
 
 
 
 
 
-// function signup(req, res, next) {
-
-//       db.collection('user').insertOne({
-//           username: req.body.username,
-//           password: req.body.password,
-//           console: req.body.description
-//       }, done)
-
-//       function done(err) {
-//           if (err) {
-//               next(err)
-//           } else {
-//               req.session.user = {
-//                 username: username
-//               }
-//                res.redirect('/profile')
-//               }
-
-//           }
 
 
-//       }
+function signup(req, res, next) {
+
+      db.collection('user').insertOne({
+          username: req.body.username,
+          password: req.body.password,
+          console: req.body.description
+      }, done)
+
+      function done(err) {
+          if (err) {
+              next(err)
+          } else {
+             
+               res.redirect('/profile')
+              }
+             
+              }
+
+}
+
+
+
+
+      
+
 
 
 
@@ -203,6 +196,8 @@ function removeGame(req, res, next) {
 function login(req, res) {
 
     var username = req.body.username
+
+
     var password = req.body.password
 
     db.collection('user').findOne({
@@ -218,14 +213,17 @@ function login(req, res) {
                 id: user._id,
                 username: user.username
             })
+        
         } else {
             res.json({
                 status: 'ok'
+                
             })
             res.status(401).send('Password incorrect')
             }
     } 
 }
+
 
 
 
@@ -247,6 +245,7 @@ function error(req, res) {
         }
         throw err
     })
+
 }
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

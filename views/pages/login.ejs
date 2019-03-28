@@ -11,18 +11,11 @@
   <button type=submit class=btn-main>Login</button>
   </fieldset>
 </form>
- <% if (typeof user == 'object' && user) { %>
+ <% if (typeof username == 'object' && username) { %>
 
 
 
 
-  <h2>Hi,  <%= user.username %> !</h2>
-  <p> <%= user.console> gamer%> </p>
-<% } else { %>
-
-<div class=log-sign>
-Already have an account?
-<a class=btn-login href="/login">Log in</a>
-New here?
-<a class=btn-signup href="/sign-up">Sign up</a>
+  <h2>Hi,  <%= username %> !</h2>
+  <p>  </p>
 <% } %>

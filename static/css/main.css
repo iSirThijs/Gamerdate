@@ -255,7 +255,7 @@ ul.games li.item button.add:hover {
     padding: 1em;
     text-align: center;
     align-content: flex-end;
-    margin-top: 30%;
+    
 }
 
 .btn-signup, .btn-login {
