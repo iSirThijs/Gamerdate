@@ -4,12 +4,12 @@
 
 <div>
     <ul class="games">
-        <% for (var index = 0; index < data.length; index++) { %>
+        <% for (var index = 0; index < game.length; index++) { %>
         <li class="item">
         
-            <img src="/uploads/<%= data[index].cover %>" alt="<%= data[index].title %>">
+            <img src="/uploads/<%= game[index].cover %>" alt="<%= game[index].title %>">
             <button id=js-remove
-                    data-id="<%= data[index]._id %>"
+                    data-id="<%= game[index]._id %>"
                     class="remove material-icons">close</button>
         </li>
         <% } %>
