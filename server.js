@@ -1,8 +1,8 @@
-var path = require('path');
-var bodyParser = require('body-parser')
-var multer = require('multer')
-var mongo = require('mongodb')
-var session = require('express-session')
+const path = require('path');
+const bodyParser = require('body-parser')
+const multer = require('multer')
+const mongo = require('mongodb')
+const session = require('express-session')
 
 require('dotenv').config()
 
@@ -21,8 +21,8 @@ const express = require('express')
 const app = express()
 const port = 3000
 
-    app.set("view engine", "ejs")
-    app.set("views", path.join(__dirname, "views"))
+    app.set('view engine', 'ejs')
+    app.set('views', path.join(__dirname, 'views'))
     app.use(bodyParser.urlencoded({extended: true}))
     app.use(express.static(path.join(__dirname, '/static')))
     app.get('/chat', chat)
@@ -155,6 +155,7 @@ function login(req, res) {
         }
     } 
 }
+
 function error(req, res) {
     res.render('static' + req.url, function (err, html) {
         if (!err) {
@@ -168,3 +169,4 @@ function error(req, res) {
     })
 
 }
+
