@@ -1,0 +1,26 @@
+<% include ../partials/head.ejs %>
+<title>Error</title>
+</head>
+<body>
+	<header>
+		<% include ../partials/header.ejs %>
+		<h1><%= code %><span><%= message %></span></h1>
+	</header>
+	<main>
+	<% if (code == 404) { %>
+		<section>
+			<header>
+				<h2>This page cannot be found</h2>
+			</header>
+			<p>Try going back to the<a href="/">home</a>page</p>
+		</section>
+	<% } else { %>
+		<section>
+			<header>
+				<h2>There was an error</h2>
+			</header>
+			<p>The server encountered an error: try going back to the<a href="/">home</a>page</p>
+		</section>
+	<% } %>
+	</main>
+</body>

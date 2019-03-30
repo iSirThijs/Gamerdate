@@ -1,20 +1,25 @@
 {
-  "name": "package",
+  "name": "gamerdate",
   "version": "1.0.0",
-  "description": "Package",
-  "main": "server.js",
+  "description": "An app to match people based on games",
+  "main": "server/server.js",
   "scripts": {
-    "test": "test",
-    "start": "nodemon server.js"
+    "eslint": "node_modules/.bin/eslint server.js controllers/*.js public/scripts/*.js",
+    "stylelint": "node_modules/.bin/stylelint public/css/*.css",
+    "test": "npm run eslint && npm run stylelint",
+    "start": "node server.js",
+    "nmStart": "nodemon server.js",
+    "mongoStart": "mongod -f mongod.conf"
   },
   "keywords": [
     "Dating"
   ],
-  "author": "Giovanni",
-  "license": "ISC",
+  "author": "Team 3",
+  "license": "MIT",
   "dependencies": {
     "array-find": "^1.0.0",
     "body-parser": "^1.18.3",
+    "dotenv": "^7.0.0",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-session": "^1.15.6",
@@ -27,11 +32,62 @@
     "repeat-string": "^1.6.1",
     "request": "^2.88.0",
     "slug": "^1.0.0",
-    "stylelint": "^9.10.1"
+    "stylelint-config-standard": "^18.2.0"
   },
   "devDependencies": {
     "eslint": "^5.15.3",
     "nodemon": "^1.18.10",
-    "stylelint-config-recommended": "^2.1.0"
+    "stylelint": "^9.10.1"
+  },
+  "nodemonConfig": {
+    "start": "npm run test",
+    "restart": "npm run test"
+  },
+  "eslintIgnore": [
+    "*.ejs",
+    "node_modules/"
+  ],
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "commonjs": true,
+      "es6": true,
+      "node": true
+    },
+    "extends": "eslint:recommended",
+    "globals": {
+      "Atomics": "readonly",
+      "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+      "ecmaVersion": 2018
+    },
+    "rules": {
+      "indent": [
+        "error",
+        "tab"
+      ],
+      "linebreak-style": [
+        "error",
+        "unix"
+      ],
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ],
+      "no-var": "error"
+    }
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard",
+    "rules": {
+      "indentation": "tab",
+      "number-leading-zero": "never",
+      "no-descending-specificity": null
+    }
   }
 }
