@@ -51,6 +51,7 @@ button {
 /* Header settings */
 body > header {
 	background-color: var(--bg1);
+	border-bottom: 1px solid var(--alt-primary-accent);
 	width: 100%;
 }
 
@@ -84,14 +85,17 @@ body > header nav a:active {
 	box-shadow: 0 2px var(--secondary-accent);
 }
 
+header > * {
+	max-width: 60rem;
+	margin: 0 auto;
+}
+
 /* Street Sign */
 h1 {
 	font-family: var(--font-heading);
 	background-color: var(--bg1);
 	font-size: 2.5em;
-	margin: 0;
 	padding: 10px 10px 0;
-	border-bottom: 1px solid var(--alt-primary-accent);
 	width: 100%;
 	box-sizing: border-box;
 }
@@ -102,12 +106,22 @@ h1 span {
 	color: var(--primary-accent);
 }
 
+/* lay-out of main */
+main {
+	display: flex;
+	flex-flow: column;
+	justify-content: space-around;
+	align-items: center;
+	max-width: 60rem;
+	margin: 10px auto;
+}
+
 /* Standard Section */
 section {
 	display: flex;
 	flex-flow: column;
 	align-items: stretch;
-	max-width: 25rem;
+	max-width: 28rem;
 	margin: 10px;
 	border-radius: 10px;
 	background-color: var(--bg3);
@@ -174,4 +188,24 @@ section a {
 
 .user-input label {
 	margin: 15px 0 2px;
+}
+
+@media screen and (min-width: 30rem) and (max-width: 50rem) {
+	main {
+		flex-flow: row wrap;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	section {
+		max-width: 22rem;
+	}
+}
+
+@media screen and (min-width: 30rem) {
+	main {
+		flex-flow: row wrap;
+		justify-content: space-between;
+		align-items: center;
+	}
 }

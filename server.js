@@ -31,7 +31,7 @@ server
 	// 	secret: process.env.SESSION_SECRET
 	// }))
 	// .get('/chat', chat)
-	.get('/', (req, res) => res.render('./pages/index.ejs'))
+	.get('/', (req, res) => res.render('index.ejs'))
 	// .get('/sign-up', renderSignup)
 	// .get('/login', renderLogin)
 	// .get('/profile', profile)
@@ -156,10 +156,10 @@ server
 function notFound(req, res) {
 	res.locals.code = 404;
 	res.locals.message = 'Not found';
-	res.status(404).render('pages/error-page.ejs');
+	res.status(404).render('error-page.ejs');
 }
 
 function errorHandler(err, req, res) {
 	res.locals.code = 500;
-	res.status(500).res.render('pages/error-page.ejs');
+	res.status(500).res.render('error-page.ejs');
 }
