@@ -2,7 +2,9 @@ require('dotenv').config();
 
 const express = require('express');
 const server = express();
+const games = require('./controllers/gamelibrary');
 const bodyParser = require('body-parser');
+
 
 server
 	.use('/static', express.static('./static'))
@@ -15,6 +17,7 @@ server
 	// 	secret: process.env.SESSION_SECRET
 	// }))
 	.get('/', (req, res) => res.render('index.ejs'))
+	.use('/games', games)
 	.use(notFound)
 	.use(errorHandler)
 	.listen(process.env.PORT || 8000);
