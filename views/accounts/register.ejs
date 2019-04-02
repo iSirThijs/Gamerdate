@@ -1,0 +1,35 @@
+<% include ../partials/head.ejs %>
+<title> Register on Gamerdate </title>
+</head>
+<body>
+	<header>
+		<% include ../partials/header.ejs %>
+		<h1>Gamerdate<span>home</span></h1>
+	</header>
+	<main>
+		<section class="user-input">
+			<form action=/account method=post>
+				<fieldset>
+					<legend>Algemene gegevens</legend> 
+					<label for='name'> First Name:</label> 
+					<input type='text' name='name' accept='text'>
+					<label for='lastname'> Last Name:</label> 
+					<input type='text' name='lastname' accept='text'>
+					<label for='email'> Email:</label> 
+					<input type='text' name='email' accept='email'>
+					<label for='username'> Username:</label> 
+					<input type='text' name='username' accept='text'>
+					<label for='gender'> Gender:</label> 
+					<input type='checkbox' name='gender' accept='text'> Man
+					<input type='checkbox' name='gender' accept='text'> Women
+					<input type='checkbox' name='gender' accept='text'> Different
+
+					<button type="submit" name="signup">Sign Up</button>
+						
+					
+	
+				</fieldset>
+			</form>
+		</section>
+	</main>
+</body>

@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const server = express();
+const accounts = require('./controllers/accounts.js');
 const bodyParser = require('body-parser');
 
 server
@@ -15,6 +16,7 @@ server
 	// 	secret: process.env.SESSION_SECRET
 	// }))
 	.get('/', (req, res) => res.render('index.ejs'))
+	.use('/account', accounts)
 	.use(notFound)
 	.use(errorHandler)
 	.listen(process.env.PORT || 8000);

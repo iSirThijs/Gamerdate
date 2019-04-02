@@ -29,6 +29,10 @@ a {
 	color: var(--font-body-color);
 }
 
+fieldset {
+	border: none;
+}
+
 input[type=text],
 input[type=date],
 input[type=password],
