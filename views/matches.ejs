@@ -1,0 +1,18 @@
+<% include ./partials/head.ejs %>
+<title>Gamerdate Home</title>
+</head>
+
+<body>
+	<header>
+		<% include ./partials/header.ejs %>
+		<h1> Gamerdate <span>Your matches</span></h1>
+	</header>
+	<main>
+		<section>
+			<% for (var i = 0; i < matches.length; i++) { %>
+			<p>
+				<%= matches[i].username %>
+			</p>
+			<% } %>
+		</section>
+	</main>

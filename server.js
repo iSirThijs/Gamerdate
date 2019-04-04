@@ -3,6 +3,7 @@ require('dotenv').config();
 const express = require('express');
 const server = express();
 const bodyParser = require('body-parser');
+const matches = require('./controllers/matches.js');
 
 server
 	.use('/static', express.static('./static'))
@@ -15,6 +16,7 @@ server
 	// 	secret: process.env.SESSION_SECRET
 	// }))
 	.get('/', (req, res) => res.render('index.ejs'))
+	.use('/match', matches )
 	.use(notFound)
 	.use(errorHandler)
 	.listen(process.env.PORT || 8000);
