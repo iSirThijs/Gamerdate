@@ -130,6 +130,7 @@ section {
 	border-radius: 10px;
 	background-color: var(--bg3);
 	height: 100%;
+	width: 100%;
 }
 
 section header {

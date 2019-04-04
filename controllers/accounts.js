@@ -2,16 +2,12 @@ const express = require('express');
 const router = express.Router();
 
 router
-	.get('/register', register)
+	.get('/register', (req, res) => res.render('accounts/register.ejs'))
 	.get('/', account)
 	.post('/', add);
 
 function account(req, res) {
-	res.render('accounts/account.ejs', {data:data});
-}
-
-function register(req, res) {
-	res.render('accounts/register.ejs', {data:data});
+	res.render('accounts/account.ejs', { data: data [1]});
 }
 	
 let data = [
@@ -19,15 +15,15 @@ let data = [
 		name: 'Emma',
 		lastname: 'Oudmaijer',
 		email: 'Emmaoudmaijer@hva.nl',
-		username: 'emmao',
-		gender: ''
+		username: 'EmmaO',
+		gender: 'Women'
 	},
 	{
 		name: 'Youp',
 		lastname: 'Schaefers',
 		email: 'youpschaefers@gmail.com',
-		username: 'youp0',
-		gender: ''
+		username: 'youpS',
+		gender: 'Man'
 	}
 ];
 
@@ -41,7 +37,5 @@ function add(req, res){
 	});
 	res.redirect('/account');
 }
-
-
 
 module.exports = router;

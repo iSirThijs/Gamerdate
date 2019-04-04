@@ -9,9 +9,15 @@
 	</header>
 	<main>
 		<section>
-            
-			
-		</section>
+            <header>
+                <h2><%= data.name %> <%= data.lastname %>
+                </h2>
+            </header>
+            <p><a href=<%= data.username %>><%= data.username %></a></p>
+            <p><%= data.email %></p>
+            <p> <%= data.gender %> </p>
+        </section>
 
-	</main>
+    </main>
+    <script src="../../static/account.js"></script>
 </body>

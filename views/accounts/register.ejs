@@ -10,23 +10,34 @@
 		<section class="user-input">
 			<form action=/account method=post>
 				<fieldset>
-					<legend>Algemene gegevens</legend> 
+				<legend>name</legend> 
 					<label for='name'> First Name:</label> 
 					<input type='text' name='name' accept='text'>
 					<label for='lastname'> Last Name:</label> 
 					<input type='text' name='lastname' accept='text'>
 					<label for='email'> Email:</label> 
 					<input type='text' name='email' accept='email'>
+				</fieldset>
+
+				<fieldset>
+				<legend>Account</legend> 
 					<label for='username'> Username:</label> 
 					<input type='text' name='username' accept='text'>
+					<label for='password' id="password"> Password:</label> 
+					<input type='password' name='password' accept='text'>
+					<button id='show-pass' type="button">Show Password</button>
+				</fieldset>
+
+				<fieldset>
+				<legend>Gender</legend> 
 					<label for='gender'> Gender:</label> 
-					<input type='checkbox' name='gender' accept='text'> Man
-					<input type='checkbox' name='gender' accept='text'> Women
-					<input type='checkbox' name='gender' accept='text'> Different
+				
+					<label for='man'>Man <input type='checkbox' name='man' accept='text'></label>
+					<label for='Women'>Women <input type='checkbox' name='Women' accept='text'></label>
+					<label for='different'>Different <input type='checkbox' name='different' accept='text'></label>
+				</fieldset>
 
 					<button type="submit" name="signup">Sign Up</button>
-						
-					
 	
 				</fieldset>
 			</form>
