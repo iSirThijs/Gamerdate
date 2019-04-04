@@ -4,17 +4,17 @@ const express = require('express');
 const server = express();
 const accounts = require('./controllers/accounts.js');
 const bodyParser = require('body-parser');
-
+const session = require('express-session');
 server
 	.use('/static', express.static('./static'))
 	.set('view engine', 'ejs')
 	.set('views', './views')
 	.use(bodyParser.urlencoded({extended: true}))
-	// .use(session({
-	// 	resave: false,
-	// 	saveUninitialized: true,
-	// 	secret: process.env.SESSION_SECRET
-	// }))
+	.use(session({
+		resave: false,
+		saveUninitialized: true,
+		secret: process.env.SESSION_SECRET
+	}))
 	.get('/', (req, res) => res.render('index.ejs'))
 	.use('/account', accounts)
 	.use(notFound)
