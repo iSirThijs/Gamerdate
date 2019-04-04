@@ -8,11 +8,14 @@
 		<h1> Gamerdate <span>Your matches</span></h1>
 	</header>
 	<main>
+		<% for (var i = 0; i < matches.length; i++) { %>
 		<section>
-			<% for (var i = 0; i < matches.length; i++) { %>
-			<p>
+			<header>
 				<%= matches[i].username %>
+			</header>
+			<p>
+				<%= matches[i].games %>
 			</p>
-			<% } %>
 		</section>
+		<% } %>
 	</main>

@@ -7,9 +7,12 @@ const User = require('../models/user');
 router
 	.get('/', matchPage);
 
-async function matchPage (req, res) {
+async function matchPage(req, res) {
 	let matches = await findMatches();
-	res.render(('matches.ejs'), {matches});
+	console.log(matches); //eslint-disable-line
+	res.render(('matches.ejs'), {
+		matches
+	});
 }
 
 
@@ -20,24 +23,25 @@ function findMatches() {
 			dbName: 'Gamerdate'
 		});
 		const db = mongoose.connection;
-		db.on('error', (err, next) => next (err));
-		db.once('open', async function(){
+		db.on('error', (err, next) => next(err));
+		db.once('open', async function() {
 			// Find your own data
-			let data = await User.find({username: 'JakeP'});
-			// Find the first game in your game array and match it to others
-			let userGames =data[0].games;
-			let game =userGames[0];
-			let matches = await User.find({ games:game });
-			// Exclude yourself from the array of matches
-			for (let i =0; i < matches.length; i++)
-				if (matches[i].username === 'JakeP') {
-					matches.splice(i,1);}
-			resolve(matches);
+			let data = await User.find({
+				username: 'JakeP'
+			});
+			// Find the games in your game library and match it to others
+			let matches = [];
+			let userGames = data[0].games;
+			for (let i = 0; i < userGames.length; i++) {
+				let game = userGames[i];
+				matches.push(await User.find({ $and:[
+					{ games: game } , {username:{$ne: 'JakeP'}}
+				]}));
+			}
+			let flatMatch = matches.flat();
+			resolve(flatMatch);
 		});
 	});
 }
-
-
-
 
 module.exports = router;
