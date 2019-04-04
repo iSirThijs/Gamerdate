@@ -10,12 +10,14 @@ server
 	.set('view engine', 'ejs')
 	.set('views', './views')
 	.use(bodyParser.urlencoded({extended: true}))
+
 	.use(session({
 		resave: false,
 		saveUninitialized: true,
 		secret: process.env.SESSION_SECRET
 	}))
-	.get('/', (req, res) => res.render('index.ejs'))
+
+	.get('/', (req, res) => res.render('index.ejs', { user: req.session.user}))
 	.use('/account', accounts)
 	.use(notFound)
 	.use(errorHandler)
@@ -31,3 +33,8 @@ function errorHandler(err, req, res) {
 	res.locals.code = 500;
 	res.status(500).res.render('error-page.ejs');
 }
+// function requireLogin(req,res,next){
+// 	if(req.session.user) next();
+// 	else next(err);
+// };
+

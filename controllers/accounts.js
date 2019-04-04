@@ -8,22 +8,41 @@ router
 	.post('/register', registerAccount )
 	.get('/', account)
 	.get('/login', (req, res) => res.render('accounts/login.ejs'))
-	.post('/', add);
-
+	.post('/', add)
+	.post('/login', login);
 
 async function registerAccount(req, res, next) {
 	try {
 		await createAccount(req);
+		req.session.user = req.body.username;
 		res.redirect('/');
 	} catch(err) {
 		next(err);
 	}
 }
 
+
+async function login(req,res,next) {
+	try{
+		await checkLogin(req);
+		req.session.user = req.body.username;
+		res.redirect('/');
+	} catch(err) {
+		next(err);
+	}
+}
+
+
+
+
+
+
+
+
+
 function createAccount(req){
 	return new Promise(function(resolve, reject){
-		let {name, lastname, email, username, password, gender} = req.body; //object destructuring 
-		console.log(req.body); //eslint-disable-line
+		let {name, lastname, email, username, password, gender} = req.body; //object destructuring
 
 		mongoose.connect(process.env.MONGO_DB, { 
 			dbName: 'gamerdate',
@@ -50,6 +69,27 @@ function createAccount(req){
 	});
 }
 
+function checkLogin(req){
+	return new Promise(function(resolve, reject){
+		let {username, password} = req.body; //object destructuring
+
+		mongoose.connect(process.env.MONGO_DB, { 
+			dbName: 'gamerdate',
+			useNewUrlParser: true
+		}); // make a connection to the database
+
+		const db = mongoose.connection; // defines the connection
+
+		db.on('error', (err) => reject(err) ); // on event emitter error, reject and send the error back
+		db.once('open', async function(){
+			let data = await User.find({ username: username });
+			let user = data && data[0];
+
+			if(user.password === password) resolve();
+			else reject('Password don\'t match');	 
+		});
+	});
+}
 
 
 
