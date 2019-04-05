@@ -17,6 +17,7 @@
   "author": "Team 3",
   "license": "MIT",
   "dependencies": {
+    "argon2": "^0.21.0",
     "array-find": "^1.0.0",
     "body-parser": "^1.18.3",
     "dotenv": "^7.0.0",

@@ -10,13 +10,20 @@ server
 	.set('view engine', 'ejs')
 	.set('views', './views')
 	.use(bodyParser.urlencoded({extended: true}))
-
 	.use(session({
 		resave: false,
 		saveUninitialized: true,
 		secret: process.env.SESSION_SECRET
 	}))
-
+	.use((req, res, next) => {
+		if (req.session.user){
+			res.locals.user = req.session.user;
+			next();
+		} else {
+			res.locals.user = false;
+			next();
+		}
+	})
 	.get('/', (req, res) => res.render('index.ejs', { user: req.session.user}))
 	.use('/account', accounts)
 	.use(notFound)

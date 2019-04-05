@@ -5,10 +5,12 @@ const userSchema = new mongoose.Schema({
 	lastname: String,
 	email: String,
 	username: String,
-	password: String,
-	gender: String
+	hash: String,
+	gender: String,
+	games: Array,
+	match: Array
 });
 
-const User = mongoose.model('User', userSchema)
+const User = mongoose.model('User', userSchema);
 
 module.exports = User;
