@@ -1,0 +1,216 @@
+:root {
+	/* Custom properties for fonts */
+	--font-body: 'open sans', sans-serif;
+	--font-heading: 'futura-pt', sans-serif;
+
+	/*  Custom properties for colors */
+	--primary-accent: rgb(136, 75, 232);
+	--secondary-accent: rgb(222, 205, 29);
+	--alt-primary-accent: rgb(170, 131, 232);
+	--font-body-color: rgb(207, 207, 207);
+	--bg1: rgb(32, 34, 37);
+	--bg2: rgb(54, 57, 63);
+	--bg3: rgb(47, 49, 54);
+	--line: rgb(68, 68, 68);
+}
+
+/* Some resets and defaults settings */
+body {
+	/* Sets standard properties */
+	font-family: var(--font-body);
+	color: var(--font-body-color);
+	background-color: var(--bg2);
+
+	/* resets user-agents stylesheet */
+	margin: 0;
+}
+
+a {
+	color: var(--font-body-color);
+}
+
+fieldset {
+	border: none;
+}
+
+input[type=text],
+input[type=date],
+input[type=password],
+input[type=number] {
+	color: var(--font-body-color);
+	padding: 10px;
+	background-color: var(--bg2);
+	border: dashed 1px var(--secondary-accent);
+	border-radius: 5px;
+}
+
+button {
+	padding: 10px;
+	margin: 1em 0;
+	background-color: var(--secondary-accent);
+	border: none;
+	border-radius: 5px;
+}
+
+/* Header settings */
+body > header {
+	background-color: var(--bg1);
+	border-bottom: 1px solid var(--alt-primary-accent);
+	width: 100%;
+}
+
+body > header nav ul {
+	display: flex;
+	justify-content: space-between;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+body > header nav li {
+	flex: 1 0 25%;
+}
+
+body > header nav a,
+body > header nav a:visited {
+	text-decoration: none;
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	display: block;
+	padding: 3em 1em .25em;
+	text-align: center;
+	font-size: 80%;
+	transition: box-shadow .2s ease-in-out;
+}
+
+body > header nav a:hover,
+body > header nav a:active {
+	box-shadow: 0 2px var(--secondary-accent);
+}
+
+header > * {
+	max-width: 60rem;
+	margin: 0 auto;
+}
+
+/* Street Sign */
+h1 {
+	font-family: var(--font-heading);
+	background-color: var(--bg1);
+	font-size: 2.5em;
+	padding: 10px 10px 0;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+h1 span {
+	font-size: 50%;
+	margin-left: 5px;
+	color: var(--primary-accent);
+}
+
+/* lay-out of main */
+main {
+	display: flex;
+	flex-flow: column;
+	justify-content: space-around;
+	align-items: center;
+	max-width: 60rem;
+	margin: 10px auto;
+}
+
+/* Standard Section */
+section {
+	display: flex;
+	flex-flow: column;
+	align-items: stretch;
+	max-width: 28rem;
+	margin: 10px;
+	border-radius: 10px;
+	background-color: var(--bg3);
+	height: 100%;
+	width: 100%;
+}
+
+section header {
+	align-self: stretch;
+	height: 100%;
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px solid var(--alt-primary-accent);
+}
+
+section header h2 {
+	flex-grow: 2;
+	align-self: stretch;
+	margin: 10px 10px 0;
+	font-family: var(--font-heading);
+	font-weight: normal;
+}
+
+section header button {
+	background: none;
+	border: none;
+	flex-basis: 40px;
+	color: var(--secondary-accent);
+	font-weight: bold;
+	padding-top: 1em;
+}
+
+section p,
+section a {
+	margin: 10px;
+}
+
+section a {
+	font-weight: bold;
+	color: var(--primary-accent);
+	text-decoration: underline;
+}
+
+/* Section Contents */
+
+/* User Input & forms lay-out */
+.user-input form,
+.user-input fieldset {
+	display: flex;
+	flex-flow: column;
+	align-items: stretch;
+}
+
+.user-input form {
+	margin: 10px;
+}
+
+.user-input input {
+	margin: 0;
+}
+
+.user-input button {
+	align-self: flex-end;
+}
+
+.user-input label {
+	margin: 15px 0 2px;
+}
+
+@media screen and (min-width: 30rem) and (max-width: 50rem) {
+	main {
+		flex-flow: row wrap;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	section {
+		max-width: 22rem;
+	}
+}
+
+@media screen and (min-width: 30rem) {
+	main {
+		flex-flow: row wrap;
+		justify-content: space-between;
+		align-items: center;
+	}
+}
