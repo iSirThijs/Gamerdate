@@ -5,16 +5,16 @@
 <body>
 	<header>
 		<% include ./partials/header.ejs %>
-		<h1> Gamerdate <span>Your matches</span></h1>
+		<h1> Gamerdate <span>Your noDups</span></h1>
 	</header>
 	<main>
-		<% for (var i = 0; i < matches.length; i++) { %>
+		<% for (var i = 0; i < noDups.length; i++) { %>
 		<section>
 			<header>
-				<%= matches[i].username %>
+				<%= noDups[i].username %>
 			</header>
 			<p>
-				<%= matches[i].games %>
+				<%= noDups[i].games %>
 			</p>
 		</section>
 		<% } %>

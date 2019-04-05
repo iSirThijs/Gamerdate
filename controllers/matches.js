@@ -3,15 +3,17 @@ const router = express.Router();
 const mongoose = require('mongoose');
 require('dotenv').config();
 const User = require('../models/user');
+// const id = mongoose.ObjectId;
 
 router
 	.get('/', matchPage);
 
 async function matchPage(req, res) {
 	let matches = await findMatches();
-	console.log(matches); //eslint-disable-line
+	let noDups = await rmDuplicates(matches);
+	console.log(noDups); //eslint-disable-line
 	res.render(('matches.ejs'), {
-		matches
+		noDups
 	});
 }
 
@@ -34,14 +36,39 @@ function findMatches() {
 			let userGames = data[0].games;
 			for (let i = 0; i < userGames.length; i++) {
 				let game = userGames[i];
-				matches.push(await User.find({ $and:[
-					{ games: game } , {username:{$ne: 'JakeP'}}
-				]}));
+				matches.push(await User.find({
+					$and: [{
+						games: game
+					}, {
+						username: {
+							$ne: 'JakeP'
+						}
+					}]
+				}));
 			}
 			let flatMatch = matches.flat();
 			resolve(flatMatch);
 		});
 	});
 }
+
+function rmDuplicates(arr){
+	return new Promise(function(resolve){
+		const result = [];
+		const map = new Map();
+		for (const item of arr) {
+			if(!map.has(item.id)){
+				map.set(item.id, true);    // set any value to Map
+				result.push({
+					username: item.username,
+					games: item.games
+				});
+			}
+		}
+		resolve(result);
+	});
+
+}
+
 
 module.exports = router;
