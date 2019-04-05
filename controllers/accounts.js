@@ -8,7 +8,6 @@ router
 	.post('/register', registerAccount )
 	.get('/', account)
 	.get('/login', (req, res) => res.render('accounts/login.ejs'))
-	.post('/', add)
 	.post('/login', login);
 
 async function registerAccount(req, res, next) {
@@ -31,11 +30,6 @@ async function login(req,res,next) {
 		next(err);
 	}
 }
-
-
-
-
-
 
 
 
@@ -103,32 +97,4 @@ function account(req, res) {
 	res.render('accounts/account.ejs', { data: data [1]});
 }
 	
-let data = [
-	{
-		name: 'Emma',
-		lastname: 'Oudmaijer',
-		email: 'Emmaoudmaijer@hva.nl',
-		username: 'EmmaO',
-		gender: 'Women'
-	},
-	{
-		name: 'Youp',
-		lastname: 'Schaefers',
-		email: 'youpschaefers@gmail.com',
-		username: 'youpS',
-		gender: 'Man'
-	}
-];
-
-function add(req, res){
-	data.push({
-		name: req.body.name,
-		lastname: req.body.lastname,
-		email: req.body.email,
-		username: req.body.username,
-		gender: req.body.gender
-	});
-	res.redirect('/account');
-}
-
 module.exports = router;
