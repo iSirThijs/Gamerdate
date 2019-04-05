@@ -1,0 +1,46 @@
+<% include ../partials/head.ejs %>
+<title> Register on Gamerdate </title>
+</head>
+<body>
+	<header>
+		<% include ../partials/header.ejs %>
+		<h1>Gamerdate<span>Register</span></h1>
+	</header>
+	<main>
+		<section class="user-input">
+			<form action=/account/register method=post>
+				<fieldset>
+				<legend>name</legend> 
+					<label for='name'> First Name:</label> 
+					<input required type='text' name='name' id='name' accept='text'>
+					<label for='lastname'> Last Name:</label> 
+					<input required type='text' name='lastname' id='lastname' accept='text'>
+					<label for='email'> Email:</label> 
+					<input required type='text' name='email' id='email' accept='email'>
+				</fieldset>
+
+				<fieldset>
+				<legend>Account</legend> 
+					<label for='username'> Username:</label> 
+					<input required type='text' name='username' id='username' accept='text'>
+					<label for='password' id="password"> Password:</label> 
+					<input required type='password' name='password' id='password' accept='text'>
+					<button id='show-pass' type="button">Show Password</button>
+				</fieldset>
+
+				<fieldset>
+				<legend>Gender</legend> 
+					<label for='man' >Man </label>
+					<input required type='radio' name='gender' id='man' value='man' accept='text'>
+					<label for='women'>Women </label>
+					<input type='radio' name='gender' id='women' value="women" accept='text'>
+					<label for='different'>Different <input type='radio' name='gender' id='different' value='different' accept='text'></label>
+				</fieldset>
+
+					<button type="submit" id="signup">Sign Up</button>
+	
+				</fieldset>
+			</form>
+		</section>
+	</main>
+</body>
