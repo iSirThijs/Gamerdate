@@ -52,6 +52,7 @@ function findMatches() {
 	});
 }
 
+// following code used from https://codeburst.io/javascript-array-distinct-5edc93501dc4
 function rmDuplicates(arr){
 	return new Promise(function(resolve){
 		const result = [];
