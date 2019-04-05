@@ -1,0 +1,23 @@
+
+<% include ../partials/head.ejs %>
+<title> Account page </title>
+</head>
+<body>
+	<header>
+		<% include ../partials/header.ejs %>
+		<h1>Gamerdate<span>Account</span></h1>
+	</header>
+	<main>
+		<section>
+            <header>
+                <h2><%= data.name %> <%= data.lastname %>
+                </h2>
+            </header>
+            <p><a href=<%= data.username %>><%= data.username %></a></p>
+            <p><%= data.email %></p>
+            <p><%= data.gender %></p>
+        </section>
+
+    </main>
+    <script src="static/js/account.js"></script>
+</body>

@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const server = express();
+const accounts = require('./controllers/accounts.js');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 
