@@ -2,8 +2,4 @@
 .DS_Store?
 node_modules
 .env
-<<<<<<< HEAD
-/data/
-=======
 data
->>>>>>> development

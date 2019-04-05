@@ -3,16 +3,12 @@ require('dotenv').config();
 const express = require('express');
 const server = express();
 const bodyParser = require('body-parser');
-<<<<<<< HEAD
-const matches = require('./controllers/matches.js');
-=======
 const session = require('express-session');
 
 // Controllers
 const account = require('./controllers/accounts.js');
-const profile = require('./controllers/profile.js');
+//const profile = require('./controllers/profile.js');
 const match = require('./controllers/match.js');
->>>>>>> development
 
 server
 	.use('/static', express.static('./static'))
@@ -26,13 +22,9 @@ server
 	.set('views', './views')
 	.use(setLocals)
 	.get('/', (req, res) => res.render('index.ejs'))
-<<<<<<< HEAD
-	.use('/match', matches )
-=======
 	.use('/account', account)
-	.use('/profile', profile)
+	// .use('/profile', profile)
 	.use('/match', match)
->>>>>>> development
 	.use(notFound)
 	.use(errorHandler)
 	.listen(process.env.PORT || 8000);
