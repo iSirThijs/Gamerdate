@@ -8,7 +8,7 @@ const User = require('./model/User');
 router
 	.get('./', gamesRender)
 	.use('/', gameSearch)
-	.post('/games', addGame);
+	.post('/', addGame);
 	
 function gamesRender(req, res) {
 	res.render('games/games.ejs', { data: req.data});
