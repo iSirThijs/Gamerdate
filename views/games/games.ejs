@@ -8,25 +8,26 @@
 	</header>
 	<main>
 	
-            <section id="search" class="user-input">
+            
+			<section>
+			<section id="search" class="user-input">
             
 				<form class="" action="/games/query" method="get">
 					<input type="text" name="q" value="">
 					<button type="submit">Search</button>
 				</form>
 			</section>
-			<section>
 				<% for (var index = 0; index <data.length; index++) { %>
 				<article class="card-game">
 					<h3><%= data[index].title %></h3>
 					<img src=<%= data[index].img %>>
 					<form class="" action="/games/<%= data[index].id %>" method="post">
+					<input type=hidden name=games value=<%= data[index].id %> >
 						<button class="icon-plus" type="submit" class="addIcon">Add Game</button>
+						
 					</form>
 				</article>
 				<% } %>
 			</section>
-
-        
         </main>
 </body>

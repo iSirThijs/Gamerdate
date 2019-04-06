@@ -14,11 +14,11 @@ const requestOptions = {
 exports.coverLink = async function (id, size) {
 	try {
 		const result =
-            await request(requestOptions)
-            	.fields('image_id')
-            	.limit(1)
-            	.where('id =' + id)
-            	.request('/covers');
+			await request(requestOptions)
+				.fields('image_id')
+				.limit(1)
+				.where('id =' + id)
+				.request('/covers');
 		const data = result.data[0];
 		let coverLink = 'https://images.igdb.com/igdb/image/upload/t_' + size + '/' + data.image_id + '.png';
 		return coverLink;
@@ -32,11 +32,11 @@ exports.coverLink = async function (id, size) {
 exports.findGames = async function (query) {
 	try {
 		const results =
-            await request(requestOptions)
-            	.fields('name, cover')
-            	.limit(10)
-            	.search(query)
-            	.request('/games');
+			await request(requestOptions)
+				.fields('name, cover')
+				.limit(10)
+				.search(query)
+				.request('/games');
 
 		return results.data;
 	} catch (err) {
