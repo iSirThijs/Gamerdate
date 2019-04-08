@@ -1,0 +1,24 @@
+<% include ../partials/head.ejs %>
+<title> Login on Gamerdate </title>
+</head>
+<body>
+	<header>
+		<% include ../partials/header.ejs %>
+		<h1>Gamerdate<span>Login</span></h1>
+	</header>
+	<main>
+		<section class="user-input">
+			<header>
+				<h2>Login</h2>
+			</header>
+			<form action="/account/login?<%= query %>" method="post">
+				<label for='username'> Username:</label>
+				<input required type='text' name='username' accept='text'>
+				<label for='password' id="password"> Password:</label>
+				<input required type='password' name='password' accept='text'>
+				<button id='show-pass' type="button">Show Password</button>
+				<button type="submit" name="signup">Sign In</button>
+			</form>
+		</section>
+	</main>
+</body>

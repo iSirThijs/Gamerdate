@@ -29,6 +29,10 @@ a {
 	color: var(--font-body-color);
 }
 
+fieldset {
+	border: none;
+}
+
 input[type=text],
 input[type=date],
 input[type=password],
@@ -126,6 +130,7 @@ section {
 	border-radius: 10px;
 	background-color: var(--bg3);
 	height: 100%;
+	width: 100%;
 }
 
 section header {
