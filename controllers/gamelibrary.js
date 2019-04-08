@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const gameSearch = require('./search.js');
-
+// const mongoose = require('mongoose');
 const User = require('../model/user');
+require('dotenv').config();
 
 router
 	.get('./', gamesRender)
@@ -13,13 +14,13 @@ function gamesRender(req, res) {
 	res.render('games/games.ejs', { data: req.data});
 }
 
-function addGame(req, res, next) {
-	User.findOneAndUpdate({
-		_id: req.user._id
+async function addGame(req, res, next) {
+	const userLoggedIn = res.locals.user;
+	await User.findOneAndUpdate({
+		username: userLoggedIn
 	}, {
 		$push: {
 			games: req.body.games
-
 		}
 	}, done);
 
@@ -35,4 +36,3 @@ function addGame(req, res, next) {
 
 
 module.exports = router;
-
