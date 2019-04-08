@@ -1,9 +1,8 @@
-
 const express = require('express');
 const router = express.Router();
 const gameSearch = require('./search.js');
 
-const User = require('./model/User');
+const User = require('../model/user');
 
 router
 	.get('./', gamesRender)

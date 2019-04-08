@@ -9,11 +9,12 @@ const session = require('express-session');
 const account = require('./controllers/accounts.js');
 const profile = require('./controllers/profile.js');
 // const match = require('./controllers/match.js');
+const games = require('./controllers/gamelibrary.js');
 
 // utilities
 const loginUtil = require('./utilities/loginUtil.js');
 
-const games = require('./controllers/gamelibrary.js');
+
 
 server
 	.use('/static', express.static('./static'))
@@ -56,3 +57,5 @@ function setLocals(req, res, next) {
 		next();
 	}
 }
+
+
