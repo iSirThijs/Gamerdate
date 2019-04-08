@@ -5,19 +5,20 @@
 <body>
 	<header>
 		<% include ./partials/header.ejs %>
-		<h1> Gamerdate <span>Your noDups</span></h1>
+		<h1> Gamerdate <span>Your Matches</span></h1>
 	</header>
 	<main>
 		<% for (var i = 0; i < noDups.length; i++) { %>
 		<section>
 			<header>
-				<%= noDups[i].username %>
+				<%= noDups[i].name + ' ' + noDups[i].lastname%>
 			</header>
 			<p>
 				<%= noDups[i].games %>
 			</p>
-			<button>Yes</button>
-			<button>Nope</button>
+			<form action='/match/<%=noDups[i].username%>' method="POST" >
+				<button>Yes</button>
+			</form>
 		</section>
 		<% } %>
 	</main>
