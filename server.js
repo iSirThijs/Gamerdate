@@ -42,7 +42,7 @@ function notFound(req, res) {
 
 function errorHandler(err, req, res) {
 	res.locals.code = 500;
-	res.status(500).res.render('error-page.ejs');
+	res.status(500).render('error-page.ejs');
 }
 
 function setLocals(req, res, next) {
