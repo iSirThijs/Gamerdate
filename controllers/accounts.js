@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const queryString = require('querystring');
 
 // required utilities
 const accountUtil = require('../utilities/accountUtil.js');
@@ -10,7 +11,7 @@ router
 	.get('/register', (req, res) => res.render('accounts/register.ejs'))
 	.post('/register', registerAccount )
 	.get('/', (req, res) => res.render('accounts/account.ejs', {data: []}))
-	.get('/login', (req, res) => res.render('accounts/login.ejs'))
+	.get('/login', loginPage)
 	.post('/login', login)
 	.get('/signout', signout);
 
@@ -26,16 +27,23 @@ async function registerAccount(req, res, next) {
 	}
 }
 
-async function login(req,res,next) {
+async function login(req, res, next) {
 	let {username, password} = req.body;
 	try{
 		await loginUtil.enter(username, password);
 		req.session.user = req.body.username;
-		res.redirect('/');
+		res.redirect(req.query.url || '/'); // redirect the user to the page it wants or the home if it hasn't
 	} catch(err) {
 		next(err);
 	}
 }
+
+function loginPage(req, res) {
+	const query = queryString.stringify(req.query);
+	res.locals.query = query; // gives the query with the url of the page the user want to vist to EJS so the login button can redirect to the page
+	res.render('accounts/login.ejs');
+}
+
 
 function signout(req, res,) {
 	req.session.destroy();

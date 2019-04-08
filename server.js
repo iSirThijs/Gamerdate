@@ -8,7 +8,10 @@ const session = require('express-session');
 // Controllers
 const account = require('./controllers/accounts.js');
 const profile = require('./controllers/profile.js');
-const match = require('./controllers/match.js');
+// const match = require('./controllers/match.js');
+
+// utilities
+const loginUtil = require('./utilities/loginUtil.js');
 
 server
 	.use('/static', express.static('./static'))
@@ -23,8 +26,8 @@ server
 	.use(setLocals)
 	.get('/', (req, res) => res.render('index.ejs'))
 	.use('/account', account)
-	.use('/profile', profile)
-	.use('/match', match)
+	.use('/profile', loginUtil.require, profile)
+	// .use('/match', match)
 	.use(notFound)
 	.use(errorHandler)
 	.listen(process.env.PORT || 8000);

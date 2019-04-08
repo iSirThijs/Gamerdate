@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 const User = require('../model/user.js');
 const argon2 = require('argon2');
+const queryString = require('querystring');
 
 exports.enter = function (username, password){
 	return new Promise(function(resolve, reject){
 
-		mongoose.connect(process.env.MONGO_DB, { 
+		mongoose.connect(process.env.MONGO_DB, {
 			dbName: 'gamerdate',
 			useNewUrlParser: true
 		}); // make a connection to the database
@@ -20,7 +21,18 @@ exports.enter = function (username, password){
 			let match = await argon2.verify(user.hash, password);
 
 			if(match) resolve();
-			else reject('Password don\'t match');	 
+			else reject('Password don\'t match');
 		});
 	});
+};
+
+exports.require = function(req, res, next) {
+	if (req.session.user) {
+		next(); // if user is logged in, continue with the next callback on the route
+	} else { //user isn't login
+		const query = queryString.stringify({
+			url: req.originalUrl
+		}); //save the route/url the user wants to visit en make a querystring
+		res.status(403).redirect('account/login?' + query); // sends the user to the login page and adds the orignal url as query
+	}
 };
