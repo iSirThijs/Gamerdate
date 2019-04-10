@@ -1,54 +1,36 @@
 const express = require('express');
 const router = express.Router();
-const gameSearch = require('./search.js');
-const myGames = require('./myGames.js');
-// const mongoose = require('mongoose');
-const User = require('../model/user');
-require('dotenv').config();
+
+const gamesUtil = require('../utilities/gamesUtil.js');
 
 router
-	.get('./', gamesRender)
-	.use('/', gameSearch)
-	.get('/', myGamesRender)
-	.use('/', myGames)
-	.post('/', addGame);
-	
-function gamesRender(req, res) {
-	res.render('games/searchGames.ejs', {
-		data: [],
-		user: req.session.user,
-		error: false
-	});
+	.get('/', (req, res) => res.render('games/myGames.ejs'), { data: [] }) // profile/games
+	.get('/search', (req, res) => res.render('games/searchGames.ejs'), { data: [] })
+	.get('/search/query?', searchResult );
+
+async function searchResult(req, res) {
+	const results = await gamesUtil.cards(req.query.q);
+	res.render('/games/searchGames.ejs', {data: results});
 }
-function myGamesRender(req, res) {
-	res.render('games/myGames.ejs', {
-		// data: [],
-		// user: req.session.user,
-		// error: false
-	});
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 async function addGame(req, res, next) {
-	const userLoggedIn = res.locals.user;
-	await User.findOneAndUpdate({
-		username: userLoggedIn
-	}, {
-		$push: {
-			games : {
-				_id: req.body.id,
-				title: req.body.title,
-				img: req.body.img
-			}
-		}
-	}, done);
-	function done(err) {
-		if (err) {
-			next(err);
-		} else {
 
-			res.redirect('/games/');
-		}
-	}
-}
+};
+
+
 module.exports = router;
-
-

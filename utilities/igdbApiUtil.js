@@ -43,3 +43,18 @@ exports.findGames = async function (query) {
 		throw new Error('There was a problem on the server');
 	}
 };
+
+exports.findGameById = async function(id) {
+	try {
+		const results =
+			await request(requestOptions)
+				.fields('name, cover')
+				.limit(1)
+				.where('id =' + id)
+				.request('/games');
+
+		return results.data;
+	} catch(err) {
+		throw {type: 'error'};
+	}
+};

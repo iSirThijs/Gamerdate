@@ -3,33 +3,26 @@
 </head>
 <body>
 	<header>
-		<% include ../partials/header.ejs %>
-		<h1>Search<span>Games</span></h1>
-	</header>
-	<main>
-	
-            
-			<section>
+			<% include ../partials/header.ejs %>
+			<h1>Profile<span>my games</span></h1>
+		</header>
+		<main class="fade-in">
 			<section id="search" class="user-input">
-            
-				<form class="" action="/games/search/query" method="get">
-					<input type="text" name="q" value="">
+				<form id="search-game-form" action="/profile/games/search/query" method="get">
+					<input type="text" name="q" id="query" value="">
 					<button type="submit">Search</button>
 				</form>
 			</section>
-				<% for (var index = 0; index <data.length; index++) { %>
-				<article class="card-game">
-					<h3><%= data[index].title %></h3>
-					<img src=<%= data[index].img %>>
-					<form class="" action="/games %>" method="post">
-						<input type=hidden name=_id value=<%= data[index]._id %> >
-						<input type=hidden name=_title value=<%= data[index].title %> >
-						<input type=hidden name=img value=<%= data[index].img %> >
-						<button class="icon-plus" type="submit" class="addIcon">Add Game</button>
-						
-					</form>
-				</article>
-				<% } %>
-			</section>
-        </main>
+				<section id="resultlist">
+					<% for (var index = 0; index <data.length; index++) { %>
+					<article class="card-game">
+						<h3><%= data[index].title %></h3>
+						<img src=<%= data[index].img %>>
+						<form class="" action="/profile/games/add/<%= data[index].id %>" method="post">
+							<button class="icon-plus" type="submit" class="addIcon">Add Game</button>
+						</form>
+					</article>
+					<% } %>
+				</section>
+		</main>
 </body>

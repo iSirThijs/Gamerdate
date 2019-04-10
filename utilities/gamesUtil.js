@@ -1,6 +1,10 @@
-const igdbApi = require('./igdb-api.js');
+const igdbApi = require('./igdbApiUtil.js');
+const mongoose = require('mongoose');
 
-exports.create = async function (query) {
+// Models
+const Game = require('../models/games.js');
+
+exports.cards = async function (query) {
 	if (!query || query.length === 0) {
 		throw new Error('Please provide a search querry');
 	} else {
