@@ -24,6 +24,7 @@ server
 	.set('view engine', 'ejs')
 	.set('views', './views')
 	.use(setLocals)
+
 	.get('/', (req, res) => res.render('index.ejs'))
 	.use('/account', account)
 	.use('/profile', loginUtil.require, profile)
@@ -40,6 +41,7 @@ function notFound(req, res) {
 	res.status(404).render('error-page.ejs');
 }
 
+
 function errorHandler(err, req, res) {
 	res.locals.code = 500;
 	res.status(500).res.render('error-page.ejs');
@@ -51,7 +53,6 @@ function setLocals(req, res, next) {
 			username: req.session.user.username,
 			id: req.session.user.id
 		};
-		console.log(req.session.user);
 		next();
 	} else {
 		res.locals.user = false;
