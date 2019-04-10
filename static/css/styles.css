@@ -177,6 +177,8 @@ section a {
 	display: flex;
 	flex-flow: column;
 	align-items: stretch;
+	margin-top:4em;
+
 }
 
 .user-input form {
@@ -213,4 +215,57 @@ section a {
 		justify-content: space-between;
 		align-items: center;
 	}
+}
+
+
+/*Form style for Front-end EMMA*/
+#steps{
+    width:600px;
+    overflow:hidden;
+}
+.step{
+    float:left;
+    width:600px;
+}
+#wrapper{
+    -moz-box-shadow:0px 0px 3px #aaa;
+    -webkit-box-shadow:0px 0px 3px #aaa;
+    box-shadow:0px 0px 3px #aaa;
+    -moz-border-radius:10px;
+    -webkit-border-radius:10px;
+    border-radius:10px;
+    border:2px solid #fff;
+    background-color:#f9f9f9;
+    width:600px;
+    overflow:hidden;
+}
+
+
+.fieldset1{
+	/*margin-top: 4em;*/
+	
+}
+
+.fieldset2, .fieldset3 {
+	/*margin-top: 4em;*/
+	visibility: hidden;
+}
+ 
+input[type=button]{
+	padding: 10px;
+	margin: 1em 0;
+	background-color: var(--secondary-accent);
+	border: none;
+	border-radius: 5px;
+	align-self: flex-end;
+}
+
+.fieldsetNext1, .fieldsetnext2 {
+	align-self: flex-end;
+	float: right;
+}
+
+.fieldsetBack2, .fieldsetBack3 {
+	align-self: flex-start;
+	float: left;
 }
