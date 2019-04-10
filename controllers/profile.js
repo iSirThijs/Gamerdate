@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const games = require('./gamelilbrary');
+const games = require('./gamelibrary');
 
 router
 	.use('/games', games);

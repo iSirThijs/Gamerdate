@@ -9,7 +9,6 @@ const session = require('express-session');
 const account = require('./controllers/accounts.js');
 const profile = require('./controllers/profile.js');
 // const match = require('./controllers/match.js');
-const games = require('./controllers/gamelibrary.js');
 
 // utilities
 const loginUtil = require('./utilities/loginUtil.js');
@@ -30,7 +29,6 @@ server
 	.get('/', (req, res) => res.render('index.ejs'))
 	.use('/account', account)
 	.use('/profile', loginUtil.require, profile)
-	.use('/games', games)
 	// .use('/match', match)
 
 	.use(notFound)
@@ -56,7 +54,6 @@ function setLocals(req, res, next) {
 			username: req.session.user.username,
 			id: req.session.user.id
 		};
-		console.log(req.session.user);
 		next();
 	} else {
 		res.locals.user = false;
