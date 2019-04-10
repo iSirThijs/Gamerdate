@@ -13,8 +13,6 @@ const profile = require('./controllers/profile.js');
 // utilities
 const loginUtil = require('./utilities/loginUtil.js');
 
-
-
 server
 	.use('/static', express.static('./static'))
 	.use(bodyParser.urlencoded({extended: true}))
@@ -26,6 +24,7 @@ server
 	.set('view engine', 'ejs')
 	.set('views', './views')
 	.use(setLocals)
+
 	.get('/', (req, res) => res.render('index.ejs'))
 	.use('/account', account)
 	.use('/profile', loginUtil.require, profile)
@@ -60,5 +59,3 @@ function setLocals(req, res, next) {
 		next();
 	}
 }
-
-
