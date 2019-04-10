@@ -12,12 +12,11 @@ async function matchPage(req, res) {
 	const userLoggedIn = res.locals.user;
 	let matches = await findMatches(userLoggedIn);
 	let noDups = await rmDuplicates(matches);
-	console.log(noDups); //eslint-disable-line
+	//console.log(noDups); //eslint-disable-line
 	res.render(('matches.ejs'), {
 		noDups
 	});
 }
-
 
 function findMatches(userLoggedIn) {
 	return new Promise(function(resolve) {
@@ -29,12 +28,13 @@ function findMatches(userLoggedIn) {
 		db.on('error', (err, next) => next(err));
 		db.once('open', async function() {
 			// Find your own data
-			let data = await User.find({
+			let data = await User.findOne({
 				username: userLoggedIn
 			});
 			// Find the games in your game library and match it to others
 			let matches = [];
-			let userGames = data[0].games;
+			let userGames = data.games;
+			let confirmedMatch = data.match;
 			for (let i = 0; i < userGames.length; i++) {
 				let game = userGames[i];
 				matches.push(await User.find({
@@ -42,17 +42,18 @@ function findMatches(userLoggedIn) {
 						games: game
 					}, {
 						username: {
-							$ne: userLoggedIn
+							$ne: userLoggedIn,
+							$nin: confirmedMatch 
 						}
 					}]
 				}));
 			}
 			let flatMatch = matches.flat();
 			resolve(flatMatch);
+			console.log(userGames) //eslint-disable-line
 		});
 	});
 }
-
 // following code used from https://codeburst.io/javascript-array-distinct-5edc93501dc4
 function rmDuplicates(arr) {
 	return new Promise(function(resolve) {
@@ -75,10 +76,13 @@ function rmDuplicates(arr) {
 
 async function addMatch(req, res) {
 	const userLoggedIn = res.locals.user;
-	await User.update(
-		{username: userLoggedIn},
-		{$push: { match: req.params.id}});
-	console.log('succesful push'); //eslint-disable-line
+	await User.update({
+		username: userLoggedIn
+	}, {
+		$push: {
+			match: req.params.id
+		}
+	});
 	res.redirect('/match');
 }
 
