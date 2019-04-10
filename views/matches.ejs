@@ -16,9 +16,21 @@
 			<p>
 				<%= noDups[i].games %>
 			</p>
+			<img class="profilePic" src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Profile picture sample">
+			<h2>
+				Bio
+			</h2>
+			<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultrices ultricies lacinia. Pellentesque accumsan sapien et elit pretium bibendum. Ut feugiat convallis diam a pellentesque. Praesent ultricies nunc quis purus placerat dignissim. Aenean tristique ac neque eu placerat. Cras nisi tellus, suscipit sed ultricies vel, semper a libero. Suspendisse dui.
+			</p>
 			<form action='/match/<%=noDups[i].username%>' method="POST" >
-				<button>Yes</button>
+				<button>It's a match</button>
+			</form>
+			<form>
+				<button>Rather not!</button>
 			</form>
 		</section>
 		<% } %>
 	</main>
+	<script src="static/js/match.js"></script>
+</body>

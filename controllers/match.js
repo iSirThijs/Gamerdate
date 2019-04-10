@@ -9,7 +9,8 @@ router
 	.post('/:id', addMatch);
 
 async function matchPage(req, res) {
-	const userLoggedIn = res.locals.user;
+	//let id = req.session.user.id;
+	const userLoggedIn = res.local.user;
 	let matches = await findMatches(userLoggedIn);
 	let noDups = await rmDuplicates(matches);
 	//console.log(noDups); //eslint-disable-line
@@ -43,7 +44,7 @@ function findMatches(userLoggedIn) {
 					}, {
 						username: {
 							$ne: userLoggedIn,
-							$nin: confirmedMatch 
+							$nin: confirmedMatch
 						}
 					}]
 				}));

@@ -132,6 +132,10 @@ section {
 	height: 100%;
 	width: 100%;
 }
+section img.profilePic{
+	height: 100%;
+	width: 100px;
+}
 
 section header {
 	align-self: stretch;

@@ -7,7 +7,8 @@ const userSchema = new mongoose.Schema({
 	username: String,
 	hash: String,
 	gender: String,
-	games: Array,
+	//games: [{type: mongoose.Schema.Types.Number, ref:'Game'}],
+	games:Array,
 	match: Array
 });
 
