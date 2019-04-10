@@ -3,15 +3,16 @@ const router = express.Router();
 
 const gameCards = require('../utilities/gamecards');
 
-router.get('/', searchZero);
-router.get('/query?', renderResults);
+router.get('/search', searchZero);
+router.get('/search/query?', renderResults);
 
 function searchZero(req, res) {
-	res.render('games/games.ejs', {
+	res.render('games/searchGames.ejs', {
 		data: [],
 		user: req.session.user,
 		error: false
 	});
+	
 }
 
 async function renderResults(req, res) {
@@ -22,7 +23,7 @@ async function renderResults(req, res) {
 			gituser: req.session.user,
 			error: false
 		};
-		res.render('games/games.ejs', renderData);
+		res.render('games/searchGames.ejs', renderData);
 	} catch (err) {
 		const renderData = {
 			data: [],
@@ -31,7 +32,7 @@ async function renderResults(req, res) {
 				message: err.message
 			}
 		};
-		res.render('games/games.ejs', renderData);
+		res.render('games/searchGames.ejs', renderData);
 	}
 }
 
