@@ -55,6 +55,6 @@ exports.findGameById = async function(id) {
 
 		return results.data;
 	} catch(err) {
-		throw {type: 'error'};
+		throw new Error('There was a problem on the server');
 	}
 };

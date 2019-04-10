@@ -4,26 +4,30 @@
 <body>
 	<header>
 		<% include ../partials/header.ejs %>
-		<h1><%= user %>'s <span>Games</span></h1>
+		<h1><%= user.username %><span>Games</span></h1>
 	</header>
 	<main>
-	
-            
-			<section>
-			<section id="search" class="user-input">
-            
-				<form class="" action="/games/search/query" method="get">
-					<input type="text" name="q" value="">
-					<button type="submit">Search</button>
-				</form>
-			</section>
-				<% for (var index = 0; index < data.length; index++) { %>
-				<article class="card-game">
-					<h3><%= data[index].title %></h3>
-					<img src=<%= data[index].img %>>
-					
+		<section>
+			<header>
+				<h2>All Games</h2>
+				<button type="button" name="button" id="edit-button">Edit</button>
+			</header>
+			<a href="games/search" id="link-add-game">
+				<article class="card-add-game">
+					<h3>Add Game</h3>
+					<div class="card-add-game-outline"></div>
+					<div class="card-add-game-icon icon-plus"></div>
 				</article>
-				<% } %>
-			</section>
-        </main>
+			</a>
+			<% for (var index = 0; index <data.length; index++) { %>
+			<article class="card-game">
+				<h3><%= data[index].title %></h3>
+				<img src=<%= data[index].img %>>
+				<form class="delete-form" action="games/delete/<%= data[index].id %>" method="post">
+					<button class="icon-trash" type="submit">Delete</button>
+				</form>
+			</article>
+			<% } %>
+		</section>
+	</main>
 </body>

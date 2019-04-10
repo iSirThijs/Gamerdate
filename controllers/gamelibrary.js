@@ -10,9 +10,14 @@ router
 	.get('/search/query?', searchResult )
 	.post('/add/:id', addGame);
 
-async function searchResult(req, res) {
-	const results = await gamesUtil.cards(req.query.q);
-	res.render('./games/searchGames.ejs', {data: results});
+async function searchResult(req, res, next) {
+	try {
+		const results = await gamesUtil.cards(req.query.q);
+		res.render('./games/searchGames.ejs', {data: results});
+	} catch(err) {
+		next(err);
+	}
+
 }
 
 async function addGame(req, res, next) {
