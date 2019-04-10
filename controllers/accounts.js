@@ -10,7 +10,7 @@ const loginUtil = require('../utilities/loginUtil.js');
 router
 	.get('/register', (req, res) => res.render('accounts/register.ejs'))
 	.post('/register', registerAccount )
-	.get('/', (req, res) => res.render('accounts/account.ejs', {data: []}))
+	.get('/', (req, res) => res.redirect('/profile'))
 	.get('/login', loginPage)
 	.post('/login', login)
 	.get('/signout', signout);

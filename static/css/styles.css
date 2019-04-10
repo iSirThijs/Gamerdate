@@ -202,22 +202,97 @@ section .profilePic {
 	margin: 15px 0 2px;
 }
 
-@media screen and (min-width: 30rem) and (max-width: 50rem) {
-	main {
-		flex-flow: row wrap;
-		justify-content: space-between;
-		align-items: center;
-	}
-
-	section {
-		max-width: 22rem;
-	}
+#search form {
+	flex-flow: row nowrap;
 }
 
-@media screen and (min-width: 30rem) {
-	main {
-		flex-flow: row wrap;
-		justify-content: space-between;
-		align-items: center;
-	}
+#search input {
+	flex-grow: 1;
+	align-self: center;
+	margin-right: 10px;
 }
+
+/* GameCard */
+.card-game,
+.card-add-game {
+	display: flex;
+	justify-content: space-around;
+	padding: 10px 5px;
+	align-items: stretch;
+	box-sizing: border-box;
+	height: 100px;
+}
+
+.card-game > *,
+.card-add-game > * {
+	box-sizing: inherit;
+}
+
+.card-game h3,
+.card-add-game h3 {
+	order: 3;
+	flex: 1 1 100%;
+	font-size: 1em;
+	font-weight: normal;
+	margin: 0 15px;
+	display: flex;
+	align-items: center;
+}
+
+.card-add-game h3 {
+	color: var(--secondary-accent);
+	font-weight: bold;
+}
+
+.card-game img,
+.card-add-game-outline {
+	order: 2;
+	flex: 0 0 auto;
+	max-height: 80px;
+	max-width: 55px;
+	border-radius: 5px;
+}
+
+.card-game form,
+.card-add-game-icon {
+	order: 1;
+	flex: 0 0 40px;
+	margin: 0;
+	margin-right: 5px;
+	transition: max-width .2s ease-in-out .2s;
+}
+
+.card-game button {
+	padding: 0;
+	border: none;
+	height: 100%;
+	width: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 60%;
+	background-color: rgba(255, 255, 255, 0);
+	font-size: 0;
+}
+
+.card-add-game-icon {
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 40%;
+}
+
+.card-add-game-outline {
+	height: 100%;
+	width: 100%;
+	border: 1px dashed var(--secondary-accent);
+}
+
+#link-add-game {
+	text-decoration: none;
+	display: block;
+	overflow: hidden;
+	transition: max-height .2s ease-in-out;
+}
+
+/* Icons and Background images */
+.icon-trash { background-image: url('/static/icons/trash.png'); }
+.icon-plus { background-image: url('/static/icons/plus.svg'); }

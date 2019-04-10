@@ -1,8 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
+const games = require('./gamelibrary');
+
 router
-	.get('/', );
+	.use('/games', games);
 
 
 module.exports = router;

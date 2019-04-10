@@ -38,6 +38,6 @@ exports.require = function(req, res, next) {
 		const query = queryString.stringify({
 			url: req.originalUrl
 		}); //save the route/url the user wants to visit en make a querystring
-		res.status(403).redirect('account/login?' + query); // sends the user to the login page and adds the orignal url as query
+		res.status(403).redirect('/account/login?' + query); // sends the user to the login page and adds the orignal url as query
 	}
 };
