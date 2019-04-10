@@ -3,6 +3,7 @@ const User = require('../model/user.js');
 const argon2 = require('argon2');
 
 const queryString = require('querystring');
+
 exports.enter = function (username, password){
 	return new Promise(function(resolve, reject){
 
@@ -18,10 +19,14 @@ exports.enter = function (username, password){
 			let data = await User.find({ username: username });
 			let user = data && data[0];
 
-			let match = await argon2.verify(user.hash, password);
 
-			if(match) resolve();
-			else reject('Password don\'t match');
+			if(user) {
+				let match = await argon2.verify(user.hash, password);
+				resolve({
+					match: match,
+					user: user
+				});
+			} else reject('This user doesn\'t exist');
 		});
 	});
 };

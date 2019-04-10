@@ -45,8 +45,12 @@ function errorHandler(err, req, res) {
 }
 
 function setLocals(req, res, next) {
-	if (req.session.user) {
-		res.locals.user = req.session.user;
+	if (req.session.user)  {
+		res.locals.user = {
+			username: req.session.user.username,
+			id: req.session.user.id
+		};
+		console.log(req.session.user);
 		next();
 	} else {
 		res.locals.user = false;
