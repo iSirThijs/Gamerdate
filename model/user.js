@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+const SingleGame = require('./singleGame');
 const userSchema = new mongoose.Schema({
 	name: String,
 	lastname: String,
@@ -7,7 +8,7 @@ const userSchema = new mongoose.Schema({
 	username: String,
 	hash: String,
 	gender: String,
-	games: Array,
+	games : [SingleGame.Schema],
 	match: Array
 });
 

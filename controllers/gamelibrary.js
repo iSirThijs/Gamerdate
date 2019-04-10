@@ -22,9 +22,9 @@ function gamesRender(req, res) {
 }
 function myGamesRender(req, res) {
 	res.render('games/myGames.ejs', {
-		data: [],
-		user: req.session.user,
-		error: false
+		// data: [],
+		// user: req.session.user,
+		// error: false
 	});
 }
 async function addGame(req, res, next) {
@@ -33,7 +33,11 @@ async function addGame(req, res, next) {
 		username: userLoggedIn
 	}, {
 		$push: {
-			games: req.body.games
+			games : {
+				_id: req.body.id,
+				title: req.body.title,
+				img: req.body.img
+			}
 		}
 	}, done);
 	function done(err) {
@@ -41,7 +45,7 @@ async function addGame(req, res, next) {
 			next(err);
 		} else {
 
-			res.redirect('/games/search');
+			res.redirect('/games/');
 		}
 	}
 }
