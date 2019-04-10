@@ -7,30 +7,38 @@
 		<% include ./partials/header.ejs %>
 		<h1> Gamerdate <span>Your Matches</span></h1>
 	</header>
-	<main>
+	<main id="content">
 		<% for (var i = 0; i < noDups.length; i++) { %>
-		<section>
+		<section class="match">
 			<header>
 				<%= noDups[i].name + ' ' + noDups[i].lastname%>
 			</header>
+			<img class="profilePic" src="https://vignette.wikia.nocookie.net/brooklynnine-nine/images/0/06/AmyS5.jpg/revision/latest?cb=20171103223729" alt="Profile picture sample">
+			<h2>
+				Matched games
+			</h2>
 			<p>
 				<%= noDups[i].games %>
 			</p>
-			<img class="profilePic" src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="Profile picture sample">
 			<h2>
 				Bio
 			</h2>
 			<p>
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultrices ultricies lacinia. Pellentesque accumsan sapien et elit pretium bibendum. Ut feugiat convallis diam a pellentesque. Praesent ultricies nunc quis purus placerat dignissim. Aenean tristique ac neque eu placerat. Cras nisi tellus, suscipit sed ultricies vel, semper a libero. Suspendisse dui.
 			</p>
-			<form action='/match/<%=noDups[i].username%>' method="POST" >
-				<button>It's a match</button>
+			<form action="/match/<%=noDups[i].username%>" method="POST">
+				<button type="button" onclick="nextMatch(1)" value="positive" name="match">It's a match</button>
 			</form>
-			<form>
-				<button>Rather not!</button>
+			<form action="/match/<%=noDups[i].username%>" method="POST">
+				<button type="button" onclick="nextMatch(1)" value="negative" name="match">Rather not!</button>
 			</form>
 		</section>
 		<% } %>
+		<section class="match">
+			<p>
+				That's it there are no further matches to display!
+			</p>
+		</section>
 	</main>
 	<script src="static/js/match.js"></script>
 </body>
