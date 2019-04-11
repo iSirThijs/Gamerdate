@@ -24,12 +24,10 @@ server
 	.set('view engine', 'ejs')
 	.set('views', './views')
 	.use(setLocals)
-
 	.get('/', (req, res) => res.render('index.ejs'))
 	.use('/account', account)
 	.use('/profile', loginUtil.require, profile)
 	// .use('/match', match)
-
 	.use(notFound)
 	.use(errorHandler)
 	.listen(process.env.PORT || 8000);
@@ -37,26 +35,18 @@ server
 
 function notFound(req, res) {
 	res.locals.code = 404;
-	res.locals.title = 'Not found';
+	res.locals.message = 'Not found';
 	res.status(404).render('error-page.ejs');
 }
 
-
-function errorHandler(err, req, res, next) {
+function errorHandler(err, req, res) {
 	res.locals.code = 500;
-	res.locals.title = 'Server Error';
-	res.locals.message = err.message;
-	res.status(500).render('error-page.ejs');
-	console.log('ErrorHandler' + '\n' + err); //eslint-disable-line
-	next();
+	res.status(500).res.render('error-page.ejs');
 }
 
 function setLocals(req, res, next) {
-	if (req.session.user)  {
-		res.locals.user = {
-			username: req.session.user.username,
-			id: req.session.user.id
-		};
+	if (req.session.user) {
+		res.locals.user = req.session.user;
 		next();
 	} else {
 		res.locals.user = false;

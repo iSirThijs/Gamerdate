@@ -11,18 +11,12 @@
     "nmStart": "nodemon server.js",
     "mongoStart": "mongod -f mongod.conf"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/iSirThijs/gamerdate.git"
-  },
+  "keywords": [
+    "Dating"
+  ],
   "author": "Team 3",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/iSirThijs/gamerdate/issues"
-  },
-  "homepage": "https://github.com/iSirThijs/gamerdate#readme",
   "dependencies": {
-    "apicalypse": "^0.1.3",
     "argon2": "^0.21.0",
     "body-parser": "^1.18.3",
     "dotenv": "^7.0.0",

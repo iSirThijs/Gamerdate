@@ -4,7 +4,7 @@
 <body>
 	<header>
 		<% include ./partials/header.ejs %>
-		<h1><%= code %><span><%= title %></span></h1>
+		<h1><%= code %><span><%= message %></span></h1>
 	</header>
 	<main>
 	<% if (code == 404) { %>
@@ -19,7 +19,7 @@
 			<header>
 				<h2>There was an error</h2>
 			</header>
-			<p><%= message %></p>
+			<p>The server encountered an error: try going back to the<a href="/">home</a>page</p>
 		</section>
 	<% } %>
 	</main>
