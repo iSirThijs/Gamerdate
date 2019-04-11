@@ -174,8 +174,18 @@ section .profilePic {
 	margin: 10px
 }
 
+section .cover {
+	height: 100%;
+	width: 5em;
+	margin: 10px
+}
+
 .jsEnabled section.match {
 	display: none;
+}
+
+.jsEnabled section.match:first-child {
+	display: flex;
 }
 
 /* User Input & forms lay-out */

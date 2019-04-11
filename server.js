@@ -8,6 +8,7 @@ const session = require('express-session');
 // Controllers
 const account = require('./controllers/accounts.js');
 const match = require('./controllers/match.js');
+const games = require('./controllers/gamelibrary');
 const profile = require('./controllers/profile.js');
 
 // utilities
@@ -28,7 +29,8 @@ server
 	.get('/', (req, res) => res.render('index.ejs'))
 	.use('/account', account)
 	.use('/match', loginUtil.require, match)
-	// .use('/profile', loginUtil.require, profile)
+	.use('/games', loginUtil.require, games)
+	.use('/profile', loginUtil.require, profile)
 	.use(notFound)
 	.use(errorHandler)
 	.listen(process.env.PORT || 8000);

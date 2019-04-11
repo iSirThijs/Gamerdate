@@ -17,20 +17,23 @@
 			<h2>
 				Matched games
 			</h2>
+				<% for (var j = 0; j < noDups[i].games.length; j++) { %>
 			<p>
-				<%= noDups[i].games %>
+					<%= noDups[i].games[j].title %>
 			</p>
+				<img class="cover" src="<%= noDups[i].games[j].img%>"  alt="<%= noDups[i].games[j].title %> logo">
+				<% } %>
 			<h2>
 				Bio
 			</h2>
 			<p>
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultrices ultricies lacinia. Pellentesque accumsan sapien et elit pretium bibendum. Ut feugiat convallis diam a pellentesque. Praesent ultricies nunc quis purus placerat dignissim. Aenean tristique ac neque eu placerat. Cras nisi tellus, suscipit sed ultricies vel, semper a libero. Suspendisse dui.
 			</p>
-			<form action="/match/<%=noDups[i].username%>" method="POST">
-				<button type="button" onclick="nextMatch(1)" value="positive" name="match">It's a match</button>
+			<form class="match-dec" action="/match/accept/<%=noDups[i].username%>" method="POST">
+				<button type="submit" value="positive" name="add">It's a match</button>
 			</form>
-			<form action="/match/<%=noDups[i].username%>" method="POST">
-				<button type="button" onclick="nextMatch(1)" value="negative" name="match">Rather not!</button>
+			<form class="match-dec" action="/match/deny/<%=noDups[i].username%>" method="POST">
+				<button type="submit" value="negative" name="add">Rather not!</button>
 			</form>
 		</section>
 		<% } %>
@@ -40,5 +43,5 @@
 			</p>
 		</section>
 	</main>
-	<script src="static/js/match.js"></script>
+	<script src="static/scripts/match.js"></script>
 </body>

@@ -58,3 +58,36 @@ exports.addGame = function(userID, gameID){
 	});
 };
 
+exports.acceptMatch = async function(req, res, next) {
+	const user = await User.findById(req.session.user.id);
+	let matches =req.session.matchID;
+	matches = matches.filter((value) => value.username === req.params.id);
+	let match = matches[0];
+	try {
+		user.match.push(match.id);
+		await user.save();
+		let accept = req.accepts('html');
+		if (!accept){
+			res.status(200).send();
+		} else res.redirect('/match');
+	} catch (err) {
+		next(err);
+	}
+};
+
+exports.denyMatch = async function(req, res, next) {
+	const user = await User.findById(req.session.user.id);
+	let matches =req.session.matchID;
+	matches = matches.filter((value) => value.username === req.params.id);
+	let match = matches[0];
+	try {
+		user.noMatch.push(match.id);
+		await user.save();
+		let accept = req.accepts('html');
+		if (!accept){
+			res.status(200).send();
+		} else res.redirect('/match');
+	} catch (err) {
+		next(err);
+	}
+};
