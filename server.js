@@ -45,15 +45,11 @@ function notFound(req, res) {
 
 function errorHandler(err, req, res, next) {
 	res.locals.code = 500;
-<<<<<<< HEAD
-	res.status(500).render('error-page.ejs');
-=======
 	res.locals.title = 'Server Error';
 	res.locals.message = err.message;
 	res.status(500).render('error-page.ejs');
 	console.log('ErrorHandler' + '\n' + err); //eslint-disable-line
 	next();
->>>>>>> development
 }
 
 function setLocals(req, res, next) {
