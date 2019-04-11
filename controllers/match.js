@@ -11,17 +11,24 @@ router
 	.post('/deny/:id', (req, res, next) => accountUtil.denyMatch(req, res, next));
 
 async function matchPage(req, res) {
-	let id = req.session.user.id;
-	let matches = await findMatches(id);
-	let noDups = await rmDuplicates(matches);
-	req.session.matchID = noDups;
-	res.render(('matches.ejs'), {
-		noDups
-	});
+	try {
+		let id = req.session.user.id;
+		let matches = await findMatches(id);
+		let noDups = await rmDuplicates(matches);
+		req.session.matchID = noDups;
+		res.render(('matches.ejs'), {
+			noDups
+		});
+	} catch(err) {
+		res.render(('matches.ejs'), {
+			noDups: err
+		});
+	}
+
 }
 
 function findMatches(id) {
-	return new Promise(function(resolve) {
+	return new Promise(function(resolve, reject) {
 		mongoose.connect(process.env.MONGO_DB, {
 			useNewUrlParser: true,
 			dbName: 'gamerdate'
@@ -29,32 +36,40 @@ function findMatches(id) {
 		const db = mongoose.connection;
 		db.on('error', (err, next) => next(err));
 		db.once('open', async function() {
+			try {
+				let data = await User.findById(id);
+				let prevMatched = [data.match, data.noMatch].reduce((accumulator, currentValue) =>
+					accumulator.concat(currentValue), []);
+
+				let matches = [];
+				let userGames = data.games;
+				for (let i = 0; i < userGames.length; i++) {
+					let game = userGames[i];
+					matches.push(await User.find({
+						$and: [{
+							games: game
+						}, {
+							_id: {
+								$ne: id,
+								$nin: prevMatched
+							}
+						}]
+					}).populate('games'));
+				}
+				let flatMatch = matches.reduce((accumulator, currentValue) =>
+					accumulator.concat(currentValue), []);
+				resolve(flatMatch);
+			} catch(err) {
+				reject([]);
+			}
+
+
+
 			// Find your own data
-			let data = await User.findById(id);
+
 			// Find the games in your game library and match it to others
 
 
-
-			let prevMatched = [data.match, data.noMatch].reduce((accumulator, currentValue) =>
-				accumulator.concat(currentValue), []);
-
-			let matches = [];
-			let userGames = data.games;
-			for (let i = 0; i < userGames.length; i++) {
-				let game = userGames[i];
-				matches.push(await User.find({
-					$and: [{
-						games: game
-					}, {
-						_id: {
-							$ne: id,
-							$nin: prevMatched
-						}
-					}]
-				}).populate('games'));
-			}
-			let flatMatch = matches.flat();
-			resolve(flatMatch);
 		});
 	});
 }

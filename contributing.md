@@ -7,7 +7,7 @@
 * The master branch is used for deployment
 * The master branch is protected
 
-### Devlopment branch
+### Development branch
 * The development branch is the base branch
 * The development branch is used for staging
 * The development branch is protected
