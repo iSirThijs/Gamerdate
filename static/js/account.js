@@ -1,3 +1,9 @@
+(function(){
+	let body = document.body;
+	body.classList.replace('no-js', 'js');
+}());
+
+
 
 // function ShowFieldSet(){
 

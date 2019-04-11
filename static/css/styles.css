@@ -197,6 +197,17 @@ section a {
 	margin: 15px 0 2px;
 }
 
+/* Forms when JS is enabled */
+.js .user-input form {
+	flex-flow: row nowrap;
+	transform: translateX(-100%)          ;
+}
+
+.js .user-input fieldset {
+flex: 0 0 100%;
+box-sizing: border-box;
+}
+
 @media screen and (min-width: 30rem) and (max-width: 50rem) {
 	main {
 		flex-flow: row wrap;
@@ -215,29 +226,6 @@ section a {
 		justify-content: space-between;
 		align-items: center;
 	}
-}
-
-
-/*Form style for Front-end EMMA*/
-#steps{
-    width:600px;
-    overflow:hidden;
-}
-.step{
-    float:left;
-    width:600px;
-}
-#wrapper{
-    -moz-box-shadow:0px 0px 3px #aaa;
-    -webkit-box-shadow:0px 0px 3px #aaa;
-    box-shadow:0px 0px 3px #aaa;
-    -moz-border-radius:10px;
-    -webkit-border-radius:10px;
-    border-radius:10px;
-    border:2px solid #fff;
-    background-color:#f9f9f9;
-    width:600px;
-    overflow:hidden;
 }
 
 

@@ -1,7 +1,7 @@
 <% include ../partials/head.ejs %>
 <title> Register on Gamerdate </title>
 </head>
-<body>
+<body class="no-js">
 	<header>
 		<% include ../partials/header.ejs %>
 		<h1>Gamerdate<span>Register</span></h1>
@@ -12,7 +12,7 @@
 			<form action=/account/register method=post>
 
 				<fieldset class="fieldset1" id="fieldset1id">
-				<legend>name</legend> 
+					<legend>name</legend> 
 					<label for='name'> First Name:</label> 
 					<input required type='text' name='name' id='name' accept='text'>
 					<label for='lastname'> Last Name:</label> 
@@ -23,7 +23,7 @@
 				</fieldset>
 
 				<fieldset class="fieldset2" id="fieldset2id">
-				<legend>Account</legend> 
+					<legend>Account</legend> 
 					<label for='username'> Username:</label> 
 					<input required type='text' name='username' id='username' accept='text'>
 					<label for='password' id="password"> Password:</label> 
@@ -32,7 +32,7 @@
 				</fieldset>
 
 				<fieldset class="fieldset3" id="fieldset3id">
-				<legend>Gender</legend> 
+					<legend>Gender</legend> 
 					<label for='man' >Man </label>
 					<input required type='radio' name='gender' id='man' value='man' accept='text'>
 					<label for='women'>Women </label>
@@ -40,10 +40,6 @@
 					<label for='different'>Different <input type='radio' name='gender' id='different' value='different' accept='text'></label>
 					<input type="button" id="fieldsetBack3" value="Previous">
 					<button type="submit" id="signup">Sign Up</button>
-				</fieldset>
-
-
-	
 				</fieldset>
 
 			</form>
