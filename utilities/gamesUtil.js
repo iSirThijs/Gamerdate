@@ -26,8 +26,8 @@ exports.cards = async function (query) {
 			}
 			const gameCards = await Promise.all(promises);
 			return gameCards;
-		} catch (error) {
-			throw error;
+		} catch (err) {
+			throw err;
 		}
 	}
 };
