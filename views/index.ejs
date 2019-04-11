@@ -11,7 +11,9 @@
 			<header>
 				<h2>first section</h2>
 			</header>
-			<p>hello! <%= user %> </p>
+			<% if (user) { %>
+			<p>hello! <%= user.username %> </p>
+			<% } %>
 		</section>
 		<section>
 			<header>
