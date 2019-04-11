@@ -1,0 +1,47 @@
+<% include ./partials/head.ejs %>
+<title>Gamerdate Home</title>
+</head>
+
+<body>
+	<header>
+		<% include ./partials/header.ejs %>
+		<h1> Gamerdate <span>Your Matches</span></h1>
+	</header>
+	<main id="content">
+		<% for (var i = 0; i < noDups.length; i++) { %>
+		<section class="match">
+			<header>
+				<%= noDups[i].name + ' ' + noDups[i].lastname%>
+			</header>
+			<img class="profilePic" src="https://vignette.wikia.nocookie.net/brooklynnine-nine/images/0/06/AmyS5.jpg/revision/latest?cb=20171103223729" alt="Profile picture sample">
+			<h2>
+				Matched games
+			</h2>
+				<% for (var j = 0; j < noDups[i].games.length; j++) { %>
+			<p>
+					<%= noDups[i].games[j].title %>
+			</p>
+				<img class="cover" src="<%= noDups[i].games[j].img%>"  alt="<%= noDups[i].games[j].title %> logo">
+				<% } %>
+			<h2>
+				Bio
+			</h2>
+			<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ultrices ultricies lacinia. Pellentesque accumsan sapien et elit pretium bibendum. Ut feugiat convallis diam a pellentesque. Praesent ultricies nunc quis purus placerat dignissim. Aenean tristique ac neque eu placerat. Cras nisi tellus, suscipit sed ultricies vel, semper a libero. Suspendisse dui.
+			</p>
+			<form class="match-dec" action="/match/accept/<%=noDups[i].username%>" method="POST">
+				<button type="submit" value="positive" name="add">It\'s a match</button>
+			</form>
+			<form class="match-dec" action="/match/deny/<%=noDups[i].username%>" method="POST">
+				<button type="submit" value="negative" name="add">Rather not!</button>
+			</form>
+		</section>
+		<% } %>
+		<section class="match">
+			<p>
+				That's it there are no further matches to display!
+			</p>
+		</section>
+	</main>
+	<script src="static/scripts/match.js"></script>
+</body>

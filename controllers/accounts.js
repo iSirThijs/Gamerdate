@@ -10,7 +10,7 @@ const loginUtil = require('../utilities/loginUtil.js');
 router
 	.get('/register', (req, res) => res.render('accounts/register.ejs'))
 	.post('/register', registerAccount )
-	.get('/', (req, res) => res.render('accounts/account.ejs', {data: []}))
+	.get('/', (req, res) => res.redirect('/profile'))
 	.get('/login', loginPage)
 	.post('/login', login)
 	.get('/signout', signout);
@@ -19,8 +19,11 @@ async function registerAccount(req, res, next) {
 	const userInfo = req.body;
 
 	try {
-		await accountUtil.create(userInfo) ;
-		req.session.user = req.body.username;
+		let user = await accountUtil.create(userInfo) ;
+		req.session.user = {
+			username: user.username,
+			id: user._id
+		};
 		res.redirect('/');
 	} catch(err) {
 		next(err);
@@ -30,11 +33,22 @@ async function registerAccount(req, res, next) {
 async function login(req, res, next) {
 
 	let {username, password} = req.body;
-	try{
-		await loginUtil.enter(username, password);
-		req.session.user = req.body.username;
 
-		res.redirect(req.query.url || '/'); // redirect the user to the page it wants or the home if it hasn't
+	try {
+		let result = await loginUtil.enter(username, password);
+		let { match, user} = result;
+
+		if(match){
+			req.session.user =
+			{
+				username: user.username,
+				id: user._id
+			};
+			res.redirect(req.query.url || '/'); // redirect the user to the page it wants or the home if it hasn't
+		} else {
+			let err = 'passwords don\'t match';
+			next(err);
+		}
 	} catch(err) {
 		next(err);
 	}

@@ -7,8 +7,9 @@ const session = require('express-session');
 
 // Controllers
 const account = require('./controllers/accounts.js');
+const match = require('./controllers/match.js');
+const games = require('./controllers/gamelibrary');
 const profile = require('./controllers/profile.js');
-// const match = require('./controllers/match.js');
 
 // utilities
 const loginUtil = require('./utilities/loginUtil.js');
@@ -24,11 +25,12 @@ server
 	.set('view engine', 'ejs')
 	.set('views', './views')
 	.use(setLocals)
+
 	.get('/', (req, res) => res.render('index.ejs'))
 	.use('/account', account)
+	.use('/match', loginUtil.require, match)
+	.use('/games', loginUtil.require, games)
 	.use('/profile', loginUtil.require, profile)
-	// .use('/match', match)
-
 	.use(notFound)
 	.use(errorHandler)
 	.listen(process.env.PORT || 8000);
@@ -36,18 +38,30 @@ server
 
 function notFound(req, res) {
 	res.locals.code = 404;
-	res.locals.message = 'Not found';
+	res.locals.title = 'Not found';
 	res.status(404).render('error-page.ejs');
 }
 
-function errorHandler(err, req, res) {
+
+function errorHandler(err, req, res, next) {
 	res.locals.code = 500;
+<<<<<<< HEAD
 	res.status(500).render('error-page.ejs');
+=======
+	res.locals.title = 'Server Error';
+	res.locals.message = err.message;
+	res.status(500).render('error-page.ejs');
+	console.log('ErrorHandler' + '\n' + err); //eslint-disable-line
+	next();
+>>>>>>> development
 }
 
 function setLocals(req, res, next) {
-	if (req.session.user) {
-		res.locals.user = req.session.user;
+	if (req.session.user)  {
+		res.locals.user = {
+			username: req.session.user.username,
+			id: req.session.user.id
+		};
 		next();
 	} else {
 		res.locals.user = false;

@@ -2,7 +2,6 @@
 	/* Custom properties for fonts */
 	--font-body: 'open sans', sans-serif;
 	--font-heading: 'futura-pt', sans-serif;
-
 	/*  Custom properties for colors */
 	--primary-accent: rgb(136, 75, 232);
 	--secondary-accent: rgb(222, 205, 29);
@@ -20,7 +19,6 @@ body {
 	font-family: var(--font-body);
 	color: var(--font-body-color);
 	background-color: var(--bg2);
-
 	/* resets user-agents stylesheet */
 	margin: 0;
 }
@@ -53,13 +51,13 @@ button {
 }
 
 /* Header settings */
-body > header {
+body>header {
 	background-color: var(--bg1);
 	border-bottom: 1px solid var(--alt-primary-accent);
 	width: 100%;
 }
 
-body > header nav ul {
+body>header nav ul {
 	display: flex;
 	justify-content: space-between;
 	margin: 0;
@@ -67,12 +65,12 @@ body > header nav ul {
 	list-style: none;
 }
 
-body > header nav li {
+body>header nav li {
 	flex: 1 0 25%;
 }
 
-body > header nav a,
-body > header nav a:visited {
+body>header nav a,
+body>header nav a:visited {
 	text-decoration: none;
 	box-sizing: border-box;
 	width: 100%;
@@ -84,12 +82,12 @@ body > header nav a:visited {
 	transition: box-shadow .2s ease-in-out;
 }
 
-body > header nav a:hover,
-body > header nav a:active {
+body>header nav a:hover,
+body>header nav a:active {
 	box-shadow: 0 2px var(--secondary-accent);
 }
 
-header > * {
+header>* {
 	max-width: 60rem;
 	margin: 0 auto;
 }
@@ -170,6 +168,25 @@ section a {
 }
 
 /* Section Contents */
+section .profilePic {
+	height: 100%;
+	width: 10em;
+	margin: 10px
+}
+
+section .cover {
+	height: 100%;
+	width: 5em;
+	margin: 10px
+}
+
+.jsEnabled section.match {
+	display: none;
+}
+
+.jsEnabled section.match:first-child {
+	display: flex;
+}
 
 /* User Input & forms lay-out */
 .user-input form,
@@ -195,22 +212,97 @@ section a {
 	margin: 15px 0 2px;
 }
 
-@media screen and (min-width: 30rem) and (max-width: 50rem) {
-	main {
-		flex-flow: row wrap;
-		justify-content: space-between;
-		align-items: center;
-	}
-
-	section {
-		max-width: 22rem;
-	}
+#search form {
+	flex-flow: row nowrap;
 }
 
-@media screen and (min-width: 30rem) {
-	main {
-		flex-flow: row wrap;
-		justify-content: space-between;
-		align-items: center;
-	}
+#search input {
+	flex-grow: 1;
+	align-self: center;
+	margin-right: 10px;
 }
+
+/* GameCard */
+.card-game,
+.card-add-game {
+	display: flex;
+	justify-content: space-around;
+	padding: 10px 5px;
+	align-items: stretch;
+	box-sizing: border-box;
+	height: 100px;
+}
+
+.card-game > *,
+.card-add-game > * {
+	box-sizing: inherit;
+}
+
+.card-game h3,
+.card-add-game h3 {
+	order: 3;
+	flex: 1 1 100%;
+	font-size: 1em;
+	font-weight: normal;
+	margin: 0 15px;
+	display: flex;
+	align-items: center;
+}
+
+.card-add-game h3 {
+	color: var(--secondary-accent);
+	font-weight: bold;
+}
+
+.card-game img,
+.card-add-game-outline {
+	order: 2;
+	flex: 0 0 auto;
+	max-height: 80px;
+	max-width: 55px;
+	border-radius: 5px;
+}
+
+.card-game form,
+.card-add-game-icon {
+	order: 1;
+	flex: 0 0 40px;
+	margin: 0;
+	margin-right: 5px;
+	transition: max-width .2s ease-in-out .2s;
+}
+
+.card-game button {
+	padding: 0;
+	border: none;
+	height: 100%;
+	width: 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 60%;
+	background-color: rgba(255, 255, 255, 0);
+	font-size: 0;
+}
+
+.card-add-game-icon {
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: 40%;
+}
+
+.card-add-game-outline {
+	height: 100%;
+	width: 100%;
+	border: 1px dashed var(--secondary-accent);
+}
+
+#link-add-game {
+	text-decoration: none;
+	display: block;
+	overflow: hidden;
+	transition: max-height .2s ease-in-out;
+}
+
+/* Icons and Background images */
+.icon-trash { background-image: url('/static/icons/trash.png'); }
+.icon-plus { background-image: url('/static/icons/plus.svg'); }
