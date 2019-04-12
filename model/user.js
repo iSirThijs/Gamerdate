@@ -11,6 +11,6 @@ const userSchema = new mongoose.Schema({
 	games : [{ type: Schema.Types.Number, ref: 'Game'}],
 });
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.model('User', userSchema, 'users');
 
 module.exports = User;

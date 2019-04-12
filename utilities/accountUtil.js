@@ -57,4 +57,19 @@ exports.addGame = function(userID, gameID){
 		});
 	});
 };
-
+exports.myGame = function(userID) {
+	return new Promise(async function (resolve, reject) {
+		try {
+			const user =
+			await User
+				.findById(userID)
+				.select('games')
+				.populate('games');
+			resolve(user.games);
+		} catch (err) {
+			reject({
+				type: 'error'
+			});
+		}
+	});
+};

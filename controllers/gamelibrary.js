@@ -5,7 +5,7 @@ const gamesUtil = require('../utilities/gamesUtil.js');
 const accountUtil = require('../utilities/accountUtil.js');
 
 router
-	.get('/', (req, res) => res.render('./games/myGames.ejs', { data: [] })) // profile/games
+	.get('/', myGames )
 	.get('/search', (req, res) => res.render('./games/searchGames.ejs', { data: [] }))
 	.get('/search/query?', searchResult )
 	.post('/add/:id', addGame);
@@ -19,7 +19,6 @@ async function searchResult(req, res, next) {
 	}
 
 }
-
 async function addGame(req, res, next) {
 	const userID = req.session.user.id;
 	const gameID = req.params.id;
@@ -40,4 +39,21 @@ async function addGame(req, res, next) {
 	}
 }
 
+async function myGames(req, res, next){
+	let data = [];
+	
+
+	try {
+		const userID = req.session.user.id;
+		data = await accountUtil.myGame(userID);
+		// req.session.data = data;
+		// res.locals.data = data;
+		res.render('./games/myGames.ejs', {data: data });
+	} catch(err) {
+		next(err);
+	}
+}
+
 module.exports = router;
+
+

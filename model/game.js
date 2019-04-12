@@ -6,6 +6,6 @@ const gameSchema = new mongoose.Schema({
 	img: String
 });
 
-const Game = mongoose.model('game', gameSchema);
+const Game = mongoose.model('Game', gameSchema, 'games');
 
 module.exports = Game;
