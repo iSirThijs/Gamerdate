@@ -32,26 +32,42 @@ exports.create = function (userInfo){
 		});
 	});
 };
-
 exports.addGame = function(userID, gameID){
 	return new Promise(function (resolve, reject) {
 
 		mongoose.connect(process.env.MONGO_DB, {
 			dbName: 'gamerdate',
 			useNewUrlParser: true
-		}); // make a connection to the database
-
-		const db = mongoose.connection; // defines the connection
-
-		db.on('error', (err) => reject(err)); // on event emitter error, reject and send the error back
+		}); 
+		const db = mongoose.connection; 
+		db.on('error', (err) => reject(err)); 
 		db.once('open', async function () {
 			try {
 				const user = await User.findById(userID);
-
-				user.games.push(gameID);
+				user.games.addToSet(gameID);
 				await user.save();
 				resolve();
 			} catch(err) {
+				reject(err);
+			}
+		});
+	});
+};
+exports.deleteGame = function (userID, gameID) {
+	return new Promise(function (resolve, reject) {
+		mongoose.connect(process.env.MONGO_DB, {
+			dbName: 'gamerdate',
+			useNewUrlParser: true
+		}); 
+		const db = mongoose.connection; 
+		db.on('error', (err) => reject(err)); 
+		db.once('open', async function () {
+			try {
+				const user = await User.findById(userID);
+				user.games.pop(gameID);
+				await user.save();
+				resolve();
+			} catch (err) {
 				reject(err);
 			}
 		});

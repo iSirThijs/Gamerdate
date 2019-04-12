@@ -31,7 +31,6 @@ exports.cards = async function (query) {
 		}
 	}
 };
-
 exports.cardByID = async function(gameID) {
 	try {
 		const result = await igdbApi.findGameById(gameID);

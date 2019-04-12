@@ -1,7 +1,7 @@
 <% include ../partials/head.ejs %>
 <title>Games</title>
 </head>
-<body>
+<body class=no-js>
 	<header>
 		<% include ../partials/header.ejs %>
 		<h1><%= user.username %><span>Games</span></h1>
@@ -30,4 +30,5 @@
 			<% } %>
 		</section>
 	</main>
+	<script src=../static/scripts/games.js></script>
 </body>
