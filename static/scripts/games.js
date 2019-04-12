@@ -6,15 +6,3 @@
 	}
 })();
 
-let edit = document.querySelector('#edit-button');
-
-edit.addEventListener('click', function() {
-	if (edit.innerHTML === 'Edit') {
-		edit.innerHTML = 'Done';
-		
-	} else {
-		edit.innerHTML = 'Edit';
-	}
-    
-});
-
