@@ -29,6 +29,7 @@ content.className = 'jsEnabled';
 		console.log(response.status); //eslint-disable-line
 	}
 }());
+<<<<<<< HEAD
 
 
 
@@ -38,3 +39,5 @@ content.className = 'jsEnabled';
 //const button = document.getElementsByName('add');
 
 // Make sure the script only works when js is enabled
+=======
+>>>>>>> development
