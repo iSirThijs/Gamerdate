@@ -24,7 +24,6 @@ async function matchPage(req, res) {
 			noDups: err
 		});
 	}
-
 }
 
 function findMatches(id) {

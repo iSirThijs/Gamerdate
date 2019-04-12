@@ -1,12 +1,33 @@
-<% include ./partials/head.ejs %>
+<% include ../partials/head.ejs %>
 <title>Gamerdate Home</title>
 </head>
 <body>
 	<header>
-		<% include ./partials/header.ejs %>
+		<% include ../partials/header.ejs %>
 		<h1><%= user.username %><span>profile</span></h1>
 	</header>
 	<main>
-
+		<section class="games">
+			<header> <h2>Your games</h2> </header>
+			<% for (var i=0; i<data.games.length; i++) {%>
+			<p> <%= data.games[i].title %> </p>
+			<img class="cover" src="<%= data.games[i].img%>"  alt="<%= data.games[i].title %> logo">
+			<% } %>
+			<a href="games/search" id="link-add-game">
+				<article class="card-add-game">
+					<h3>Add Game</h3>
+					<div class="card-add-game-outline"></div>
+					<div class="card-add-game-icon icon-plus"></div>
+				</article>
+			</a>
+		</section>
+		<section>
+			<% for (var i=0; i<data.match.length; i++) {%>
+			<header>
+				<h2>Your matches</h2>
+			</header>
+			<p><%= data.match[i].name + ' ' + data.match[i].lastname%></p>
+				<% } %>
+		</section>
 	</main>
 </body>
