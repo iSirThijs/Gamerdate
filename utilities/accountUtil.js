@@ -64,7 +64,7 @@ exports.deleteGame = function (userID, gameID) {
 		db.once('open', async function () {
 			try {
 				const user = await User.findById(userID);
-				user.games.pop(gameID);
+				user.games.pull(gameID);
 				await user.save();
 				resolve();
 			} catch (err) {
