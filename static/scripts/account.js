@@ -3,16 +3,6 @@
 	body.classList.replace('no-js', 'js');
 }());
 
-
-
-// function ShowFieldSet(){
-
-// }
-
-// function HideFieldSet(){
-	
-// }
-
 function GetFieldSet(){
 
 
