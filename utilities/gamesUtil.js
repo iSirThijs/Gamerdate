@@ -63,7 +63,8 @@ exports.findGameById = function(gameID) {
 		db.on('error', (err) => reject(err));
 		db.once('open', async function(){
 			try {
-				let game = Game.findGameById(gameID);
+				let data = Game.findById(gameID);
+				let game = data;
 				resolve(game);
 			} catch(err){
 				resolve(false);
