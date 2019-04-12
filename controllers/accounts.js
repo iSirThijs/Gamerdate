@@ -25,7 +25,7 @@ async function registerAccount(req, res, next) {
 			id: user._id
 		};
 		res.redirect('/');
-	} catch(err) {
+	} catch (err) {
 		next(err);
 	}
 }
@@ -61,7 +61,7 @@ function loginPage(req, res) {
 	res.render('accounts/login.ejs');
 }
 
-function signout(req, res,) {
+function signout(req, res, ) {
 	req.session.destroy();
 	res.redirect('/');
 }
