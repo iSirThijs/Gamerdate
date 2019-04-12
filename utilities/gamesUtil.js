@@ -1,3 +1,5 @@
+// inspiration and help from https://github.com/iSirThijs/Player2/blob/development/utils/gamesUtil.js
+
 const igdbApi = require('./igdbApiUtil.js');
 const mongoose = require('mongoose');
 

@@ -1,3 +1,5 @@
+//used https://github.com/iSirThijs/Player2/blob/development/utils/igdbApiUtil.js
+
 const request = require('apicalypse').default;
 const requestOptions = {
 	queryMethod: 'body',
