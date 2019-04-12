@@ -22,11 +22,6 @@ async function gamesList(req, res, next) {
 	}
 }
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> development
 async function searchResult(req, res, next) {
 	try {
 		const results = await gamesUtil.cards(req.query.q);
